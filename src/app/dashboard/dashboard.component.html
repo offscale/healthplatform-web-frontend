@@ -1,24 +1,24 @@
-<div class="grid-container">
-  <h1 class="mat-h1">Dashboard</h1>
-  <mat-grid-list cols="2" rowHeight="350px">
-    <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
-      <mat-card class="dashboard-card">
-        <mat-card-header>
-          <mat-card-title>
-            {{card.title}}
-            <button [matMenuTriggerFor]="menu" aria-label="Toggle menu" class="more-button" mat-icon-button>
-              <mat-icon>more_vert</mat-icon>
-            </button>
-            <mat-menu #menu="matMenu" xPosition="before">
-              <button mat-menu-item>Expand</button>
-              <button mat-menu-item>Remove</button>
-            </mat-menu>
-          </mat-card-title>
-        </mat-card-header>
-        <mat-card-content class="dashboard-card-content">
-          <div>Card Content Here</div>
-        </mat-card-content>
-      </mat-card>
-    </mat-grid-tile>
-  </mat-grid-list>
+<h1 class="mat-h1">Welcome surgeons!</h1>
+
+<div fxLayout="row" fxLayout.lt-md="column" id="features" fxLayoutGap="25px" fxFlexAlign="center center">
+  <div fxFlex fxLayout="row" fxLayout.xs="column" fxLayoutGap="5px"
+       (click)="openSnackBar('Only admin can upload')">
+    <button mat-raised-button color="secondary" fxFlex="100">Upload</button>
+    <mat-icon fxFlex="50">cloud_upload</mat-icon>
+    <p fxFlex="50">Contents are securely uploaded to our server(s).</p>
+  </div>
+
+  <div fxFlex fxLayout="row" fxLayout.xs="column" fxLayoutGap="5px"
+       (click)="openSnackBar('Triage feature being implemented')">
+    <button mat-raised-button color="primary" fxFlex="100">Triage</button>
+    <mat-icon fxFlex="50">photo_library</mat-icon>
+    <p fxFlex="50">Categorise images into predefined categories.</p>
+  </div>
+
+  <div fxFlex fxLayout="row" fxLayout.xs="column" fxLayoutGap="5px"
+       (click)="openSnackBar('Triage triage feature [still] being implemented')">
+    <button mat-raised-button color="accent" fxFlex="100">Triage²!</button>
+    <mat-icon fxFlex="50">explore</mat-icon>
+    <p fxFlex="50">Review the triage others have done.</p>
+  </div>
 </div>

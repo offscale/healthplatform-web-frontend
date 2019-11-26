@@ -6,11 +6,15 @@ import { MatButtonModule, MatCardModule, MatGridListModule, MatIconModule, MatMe
 
 import { dashboardRoutes } from './dashboard.routes';
 import { DashboardComponent } from './dashboard.component';
+import { FlexModule } from '@angular/flex-layout';
 
 
 @NgModule({
   imports: [
     CommonModule, RouterModule, RouterModule.forChild(dashboardRoutes),
+
+    FlexModule,
+
     MatGridListModule,
     MatCardModule,
     MatMenuModule,
