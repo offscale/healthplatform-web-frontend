@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./secret-dashboard.component.css']
 })
 export class SecretDashboardComponent implements OnInit {
+  getUser = () => localStorage.getItem('user');
+
 
   constructor() { }
 
