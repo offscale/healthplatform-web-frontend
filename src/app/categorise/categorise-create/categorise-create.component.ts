@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 
-import { CategoriseService } from '../../api/categorise/categorise.service';
-import { AlertsService } from '../alerts/alerts.service';
+import { CategoriseService } from '../../../api/categorise/categorise.service';
+import { AlertsService } from '../../alerts/alerts.service';
 import { FormBuilder, Validators } from '@angular/forms';
-import { removeFalseyProperties } from '../../utils';
-import { ICategorise } from '../../api/categorise/categorise.interfaces';
+import { removeFalseyProperties } from '../../../utils';
+import { ICategorise } from '../../../api/categorise/categorise.interfaces';
 
 @Component({
   selector: 'app-categorise-create',
@@ -14,13 +14,12 @@ import { ICategorise } from '../../api/categorise/categorise.interfaces';
 export class CategoriseCreateComponent {
   createForm = this.fb.group({
     id: [''],
+    artifact: ['', Validators.required],
     category: ['', Validators.required],
     username: [''],
     createdAt: [''],
     updatedAt: ['']
   });
-
-  r = removeFalseyProperties;
 
   constructor(private fb: FormBuilder,
               private alertsService: AlertsService,

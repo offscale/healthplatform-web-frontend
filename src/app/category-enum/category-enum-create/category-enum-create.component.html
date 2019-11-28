@@ -1,6 +1,10 @@
 <form [formGroup]="createForm" fxLayout="column" (ngSubmit)="submit()">
   <mat-form-field fxFlex="100">
-    <input matInput placeholder="category" formControlName="category">
+    <input matInput placeholder="name" formControlName="name">
+  </mat-form-field>
+
+  <mat-form-field fxFlex="100">
+    <input matInput placeholder="enumeration" formControlName="enumeration">
   </mat-form-field>
 
   <button mat-raised-button color="primary" type="submit">Add</button>

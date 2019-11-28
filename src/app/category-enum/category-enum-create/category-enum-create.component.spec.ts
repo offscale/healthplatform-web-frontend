@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CategoriseListComponent } from './categorise-list.component';
+import { CategoryEnumCreateComponent } from './category-enum-create.component';
 
-describe('CategoriseListComponent', () => {
-  let component: CategoriseListComponent;
-  let fixture: ComponentFixture<CategoriseListComponent>;
+describe('CategoryEnumCreateComponent', () => {
+  let component: CategoryEnumCreateComponent;
+  let fixture: ComponentFixture<CategoryEnumCreateComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CategoriseListComponent ]
+      declarations: [ CategoryEnumCreateComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CategoriseListComponent);
+    fixture = TestBed.createComponent(CategoryEnumCreateComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

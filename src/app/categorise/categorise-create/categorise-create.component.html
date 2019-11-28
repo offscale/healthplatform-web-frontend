@@ -1,0 +1,15 @@
+<form [formGroup]="createForm" fxLayout="column" (ngSubmit)="submit()">
+  <mat-form-field fxFlex="100">
+    <mat-select placeholder="category" formControlName="category">
+      <mat-option value="primary">Primary</mat-option>
+      <mat-option value="accent">Accent</mat-option>
+      <mat-option value="warn">Warn</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field fxFlex="100">
+    <input matInput placeholder="artifact" formControlName="artifact">
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" type="submit">Add</button>
+</form>

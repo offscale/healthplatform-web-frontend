@@ -19,7 +19,7 @@ export class CategoriseComponent implements AfterViewInit {
     this.categoriseService
       .getAll()
       .subscribe(
-        categorises => this.categorises,
+        categorises => this.categorises = categorises,
         this.alertsService.add.bind(this.alertsService)
       );
   }

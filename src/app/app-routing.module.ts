@@ -28,6 +28,11 @@ const routes: Routes = [
     path: 'categorise',
     loadChildren: () => import('./categorise/categorise.module').then(m => m.CategoriseModule),
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'category-enum',
+    loadChildren: () => import('./category-enum/category-enum.module').then(m => m.CategoryEnumModule),
+    canActivate: [AuthGuard]
   }
 ];
 
