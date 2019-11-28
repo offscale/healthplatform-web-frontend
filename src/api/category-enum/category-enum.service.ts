@@ -37,9 +37,9 @@ export class CategoryEnumService {
 
   getAll(): Observable<ICategoryEnum[]> {
     return this.http
-      .get<{categoryEnums: ICategoryEnum[]}>('/api/category_enum')
+      .get<{category_enums: ICategoryEnum[]}>('/api/category_enum')
       .pipe(
-        map(categoryEnums => categoryEnums.categoryEnums),
+        map(categoryEnums => categoryEnums.category_enums),
         map(categoryEnums => categoryEnums.map(parseDates))
       );
   }

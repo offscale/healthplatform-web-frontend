@@ -3,9 +3,18 @@
     <input matInput placeholder="name" formControlName="name">
   </mat-form-field>
 
-  <mat-form-field fxFlex="100">
-    <input matInput placeholder="enumeration" formControlName="enumeration">
+  <mat-form-field *ngIf="createForm.value.enumeration.length">
+    <mat-label>Enumeration</mat-label>
+    <mat-list *ngFor="let _enum of createForm.value.enumeration" formControlName="enumeration"  >
+      <p mat-line>{{_enum}}</p>
+    </mat-list>
   </mat-form-field>
+  <div fxLayout="row">
+    <input fxFlex="80" placeholder="Add enumeration option" matInput #enumerationOption>
+    <button fxFlex="20" type="button" mat-button (click)="addEnumeration(enumerationOption)">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
 
-  <button mat-raised-button color="primary" type="submit">Add</button>
+  <button mat-raised-button color="primary" type="button" [disabled]="!createForm.valid">Add</button>
 </form>

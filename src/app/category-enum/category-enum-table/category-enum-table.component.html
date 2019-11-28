@@ -1,4 +1,4 @@
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8" *ngIf="dataSource">
 
   <!--- Note that these columns can be defined in any order.
         The actual rendered columns are set as a property on the row definition" -->
@@ -12,7 +12,7 @@
   <!-- enumeration Column -->
   <ng-container matColumnDef="enumeration">
     <th mat-header-cell *matHeaderCellDef> enumeration </th>
-    <td mat-cell *matCellDef="let element"> {{element.enumeration}} </td>
+    <td mat-cell *matCellDef="let element"> {{element.enumeration.join(',')}} </td>
   </ng-container>
 
   <!-- createdAt Column -->

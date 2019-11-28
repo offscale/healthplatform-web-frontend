@@ -5,7 +5,15 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { FlexModule } from '@angular/flex-layout';
 
-import { MatButtonModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatTableModule } from '@angular/material';
+import {
+  MatButtonModule,
+  MatFormFieldModule,
+  MatIconModule,
+  MatInputModule,
+  MatListModule,
+  MatSelectModule,
+  MatTableModule
+} from '@angular/material';
 
 import { CategoryEnumService } from '../../api/category-enum/category-enum.service';
 import { CategoryEnumCreateComponent } from './category-enum-create/category-enum-create.component';
@@ -20,7 +28,7 @@ import { categoryEnumRoutes } from './category-enum.routes';
     CommonModule, RouterModule, RouterModule.forChild(categoryEnumRoutes),
     ReactiveFormsModule,
 
-    FlexModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatTableModule, MatSelectModule,
+    FlexModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatTableModule, MatSelectModule, MatListModule, MatIconModule,
   ],
   exports: [CategoryEnumCreateComponent, CategoryEnumTableComponent],
   providers: [CategoryEnumService]

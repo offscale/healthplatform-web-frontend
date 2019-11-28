@@ -11,5 +11,5 @@
     <input matInput placeholder="artifact" formControlName="artifact">
   </mat-form-field>
 
-  <button mat-raised-button color="primary" type="submit">Add</button>
+  <button mat-raised-button color="primary" type="submit" [disabled]="!createForm.valid">Add</button>
 </form>

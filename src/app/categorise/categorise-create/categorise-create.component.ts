@@ -27,7 +27,7 @@ export class CategoriseCreateComponent {
 
   submit() {
     const categorise: ICategorise = removeFalseyProperties(this.createForm.value) as unknown as ICategorise;
-    if (categorise == null) {
+    if (categorise == null || !this.createForm.valid) {
       this.alertsService.add('Invalid form');
       return;
     }
