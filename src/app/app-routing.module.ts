@@ -23,6 +23,11 @@ const routes: Routes = [
     path: 'secret-dashboard',
     loadChildren: () => import('./secret-dashboard/secret-dashboard.module').then(m => m.SecretDashboardModule),
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'categorise',
+    loadChildren: () => import('./categorise/categorise.module').then(m => m.CategoriseModule),
+    canActivate: [AuthGuard]
   }
 ];
 

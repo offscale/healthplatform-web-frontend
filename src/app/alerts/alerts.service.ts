@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material';
 import { HttpErrorResponse } from '@angular/common/http';
 
-import { TAlert } from './alerts.types';
+import { IErrorMessage, TAlert } from './alerts.types';
 
 @Injectable()
 export class AlertsService {
@@ -13,9 +13,11 @@ export class AlertsService {
   }
 
   static s_from_alert(alert: string | TAlert | Error): string {
+    console.warn('AlertsService::s_from_alert::alert:',
+      alert, ';');
     if (alert == null) return 'undefined error';
 
-    const to_known_else = ((k: string | number, els?: string): string => {
+    const toKnownElse = ((k: string | number, els?: string): string => {
       const known = {
         'Gateway Timeout': 'API server not available',
         504: 'API server not available'
@@ -23,29 +25,35 @@ export class AlertsService {
       return known[k] == null ? (els == null ? k : els) : known[k];
     });
 
-    if (typeof alert === 'string') return to_known_else(alert);
+    if (typeof alert === 'string') return toKnownElse(alert);
     else if (alert instanceof HttpErrorResponse || ['status', 'statusText'].every(alert.hasOwnProperty))
-      return to_known_else((alert as HttpErrorResponse).status, (alert as HttpErrorResponse).statusText);
-    else if (alert instanceof Error) return to_known_else(alert.message);
+      return toKnownElse((alert as HttpErrorResponse).status, (alert as HttpErrorResponse).statusText);
+    else if (alert instanceof Error) return toKnownElse(alert.message);
     return Object
       .keys(alert)
       .map(k => alert[k])
       .join('\t');
   }
 
-  public add(alert: string | TAlert | Error, action?: string | false, config?: MatSnackBarConfig): void {
-    const alert_s = alert && (typeof alert === 'string' ? alert
-      : (alert instanceof Error ? alert.message : Object
-        .keys(alert)
-        .map(k => alert[k])
-        .join('\t'))) || 'undefined alert';
+  public add(alert: string | TAlert | Error | {error: IErrorMessage},
+             action?: string | false,
+             config?: MatSnackBarConfig): void {
+    const alertAsS = alert && (typeof alert === 'string' ? alert
+      : (alert instanceof Error ?
+          alert.message
+          : (alert.hasOwnProperty('error') ?
+            (alert as {error: IErrorMessage}).error.error_message
+            : Object
+              .keys(alert)
+              .map(k => alert[k])
+              .join('\t'))
+      )) || 'undefined alert';
 
-    this.alerts.push(alert_s);
-    // console.warn('AlertsService::alerts =', this.alerts, ';');
+    this.alerts.push(alertAsS);
     this.snackBar.open(
-      alert_s,
+      alertAsS,
       !action && typeof action !== 'boolean' ? 'Close' : action as string,
-      config
+      config || { duration: 5000 }
     );
   }
 }
