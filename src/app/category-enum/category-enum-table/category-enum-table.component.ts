@@ -5,6 +5,7 @@ import { MatTableDataSource } from '@angular/material';
 import { CategoryEnumService } from '../../../api/category-enum/category-enum.service';
 import { AlertsService } from '../../alerts/alerts.service';
 import { ICategoryEnum } from '../../../api/category-enum/category-enum.interfaces';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -20,7 +21,8 @@ export class CategoryEnumTableComponent implements OnInit {
     // , 'createdAt', 'updatedAt'
   ];
 
-  constructor(private alertsService: AlertsService,
+  constructor(private router: Router,
+              private alertsService: AlertsService,
               private categoryEnumService: CategoryEnumService) { }
 
   ngOnInit() {

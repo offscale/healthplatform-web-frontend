@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { FlexModule } from '@angular/flex-layout';
+import { FlexLayoutModule, FlexModule } from '@angular/flex-layout';
 
 import { MatButtonModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatTableModule } from '@angular/material';
 
@@ -20,7 +20,7 @@ import { categoriseRoutes } from './categorise.routes';
         CommonModule, RouterModule, RouterModule.forChild(categoriseRoutes),
         ReactiveFormsModule,
 
-        FlexModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatTableModule, MatSelectModule,
+        FlexModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatTableModule, MatSelectModule, FlexLayoutModule,
     ],
   exports: [CategoriseCreateComponent, CategoriseTableComponent],
   providers: [CategoriseService]

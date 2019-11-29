@@ -25,7 +25,7 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'categorise',
+    path: 'triage',
     loadChildren: () => import('./categorise/categorise.module').then(m => m.CategoriseModule),
     canActivate: [AuthGuard]
   },

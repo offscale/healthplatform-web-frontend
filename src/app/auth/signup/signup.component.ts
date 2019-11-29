@@ -6,6 +6,7 @@ import { HttpResponse } from '@angular/common/http';
 import { IAuthReq } from '../../../api/auth/auth.interfaces';
 import { AuthService } from '../../../api/auth/auth.service';
 import { AlertsService } from '../../alerts/alerts.service';
+import { getRedirectUrl } from '../../app-routing.module';
 
 @Component({
   selector: 'app-signup',
@@ -41,7 +42,7 @@ export class SignupComponent implements OnInit {
           localStorage.setItem('access-token', this.authService.accessToken);
 
           this.router
-            .navigate(['/secret-dashboard'])
+            .navigateByUrl((v => v == null ? '/secret-dashboard' : v)(getRedirectUrl(location.href)))
             .then(() => {});
         }
       );

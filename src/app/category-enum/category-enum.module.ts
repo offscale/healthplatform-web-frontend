@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { FlexModule } from '@angular/flex-layout';
 
@@ -28,7 +28,9 @@ import { categoryEnumRoutes } from './category-enum.routes';
     CommonModule, RouterModule, RouterModule.forChild(categoryEnumRoutes),
     ReactiveFormsModule,
 
-    FlexModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatTableModule, MatSelectModule, MatListModule, MatIconModule,
+    FlexModule,
+
+    MatFormFieldModule, MatInputModule, MatButtonModule, MatTableModule, MatSelectModule, MatListModule, MatIconModule, FormsModule,
   ],
   exports: [CategoryEnumCreateComponent, CategoryEnumTableComponent],
   providers: [CategoryEnumService]

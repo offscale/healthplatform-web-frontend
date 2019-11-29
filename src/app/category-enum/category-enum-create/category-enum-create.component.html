@@ -3,18 +3,30 @@
     <input matInput placeholder="name" formControlName="name">
   </mat-form-field>
 
-  <mat-form-field *ngIf="createForm.value.enumeration.length">
-    <mat-label>Enumeration</mat-label>
-    <mat-list *ngFor="let _enum of createForm.value.enumeration" formControlName="enumeration"  >
+  <mat-selection-list fxFlex="100" formControlName="enumeration"
+                      (selectionChange)="enumerationSelectionChange($event)">
+    <h3 matSubheader *ngIf="createForm.value.enumeration.length">Enumeration</h3>
+    <mat-list-option *ngFor="let _enum of createForm.value.enumeration" style="padding: 0">
       <p mat-line>{{_enum}}</p>
-    </mat-list>
-  </mat-form-field>
-  <div fxLayout="row">
-    <input fxFlex="80" placeholder="Add enumeration option" matInput #enumerationOption>
-    <button fxFlex="20" type="button" mat-button (click)="addEnumeration(enumerationOption)">
-      <mat-icon>add</mat-icon>
-    </button>
+    </mat-list-option>
+  </mat-selection-list>
+
+  <div class="mat-form-field-wrapper">
+    <div class="mat-form-field-flex bottom-border">
+      <div class="mat-form-field-infix">
+        <input placeholder="Add enumeration option" matInput #enumerationInput>
+        <button fxFlex="20" type="button" mat-button (click)="addEnumeration(enumerationInput)">
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+    </div>
   </div>
 
-  <button mat-raised-button color="primary" type="button" [disabled]="!createForm.valid">Add</button>
+  <button mat-raised-button color="primary" type="submit" [disabled]="!isCreateFormValid()">Add</button>
 </form>
+
+<!--
+<pre>createForm.value   = {{ createForm.value | json }}</pre>
+<pre>createForm.valid   = {{ createForm.valid | json }}</pre>
+<pre>createForm.invalid = {{ createForm.invalid | json }}</pre>
+-->

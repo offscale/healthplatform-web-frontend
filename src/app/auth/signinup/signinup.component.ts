@@ -32,7 +32,7 @@ export class SigninupComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     if (AuthService.loggedIn())
       this.router
-        .navigate([getRedirectUrl(location.href) || '/secret-dashboard'])
+        .navigateByUrl((v => v == null ? '/secret-dashboard' : v)(getRedirectUrl(location.href)))
         .then(() => {});
   }
 
@@ -42,7 +42,7 @@ export class SigninupComponent implements OnInit, AfterViewInit {
       .subscribe((user: IAuthReq | ILoginResp) => {
           if (user.hasOwnProperty('access_token')) {
             this.authService._login(user as ILoginResp);
-            this.router.navigateByUrl(getRedirectUrl(location.href) || '/secret-dashboard')
+            this.router.navigateByUrl((v => v == null ? '/secret-dashboard' : v)(getRedirectUrl(location.href)))
               .then(() => {})
               .catch(console.error);
           } else this.alertsService.add(`Unexpected: ${JSON.stringify(user)};`);

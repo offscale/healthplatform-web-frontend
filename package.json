@@ -1,12 +1,13 @@
 {
   "name": "healthplatform-web-frontend",
-  "version": "0.0.2",
-  "description": "Simple scaffold generated with `@angular/cli` then implemented manually.",
+  "version": "0.0.3",
+  "description": "System for doctors to triage patient images.",
   "keywords": [
     "angular",
     "angular-material",
     "@angular",
-    "@angular/material"
+    "@angular/material",
+    "triage"
   ],
   "homepage": "https://github.com/SamuelMarks/healthplatform-web-frontend#readme",
   "bugs": "https://github.com/SamuelMarks/healthplatform-web-frontend/issues",

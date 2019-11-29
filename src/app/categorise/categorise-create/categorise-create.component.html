@@ -11,5 +11,13 @@
     <input matInput placeholder="artifact" formControlName="artifact">
   </mat-form-field>
 
-  <button mat-raised-button color="primary" type="submit" [disabled]="!createForm.valid">Add</button>
+  <div fxLayout="row" fxLayoutGap="20px">
+    <button fxFlex mat-raised-button color="primary" type="submit" [disabled]="!createForm.valid">
+      Save
+    </button>
+    <a fxFlex mat-raised-button color="accent" [disabled]="!this.createForm.get('artifact').value.length"
+       [routerLink]="['/', 'triage', this.createForm.get('artifact').value]">
+      View
+    </a>
+  </div>
 </form>

@@ -16,7 +16,7 @@ export class CategoriseTableComponent implements OnInit {
   categorises: ICategorise[];
   dataSource: MatTableDataSource<ICategorise>;
   displayedColumns: string[] = [
-    'id', 'artifact_id', 'category', 'username'
+    'id', 'artifact_location', 'category', 'username'
     // , 'createdAt', 'updatedAt'
   ];
 

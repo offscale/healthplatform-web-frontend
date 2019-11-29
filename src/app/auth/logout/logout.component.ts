@@ -8,8 +8,7 @@ import { AuthService } from '../../../api/auth/auth.service';
   template: ''
 })
 export class LogoutComponent implements OnInit {
-  constructor(private authService: AuthService) {
-  }
+  constructor(private authService: AuthService) {}
 
   ngOnInit() {
     this.authService.logout();

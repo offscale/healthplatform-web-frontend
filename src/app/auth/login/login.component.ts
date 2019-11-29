@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { AuthService } from '../../../api/auth/auth.service';
 import { IAuthReq, ILoginResp } from '../../../api/auth/auth.interfaces';
 import { AlertsService } from '../../alerts/alerts.service';
+import { getRedirectUrl } from '../../app-routing.module';
 
 
 @Component({
@@ -42,8 +43,10 @@ export class LoginComponent implements OnInit {
           this.authService.accessToken = user.access_token;
           localStorage.setItem('access-token', this.authService.accessToken);
 
+          this.router;
+
           this.router
-            .navigate(['/secret-dashboard'])
+            .navigateByUrl((v => v == null ? '/secret-dashboard' : v)(getRedirectUrl(location.href)))
             .then(() => {});
         }
       );

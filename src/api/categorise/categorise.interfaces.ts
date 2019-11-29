@@ -1,7 +1,7 @@
 export interface ICategorise {
   id: number;
 
-  artifact_id: string;
+  artifact_location: string;
   category: string;
   username: string;
 
