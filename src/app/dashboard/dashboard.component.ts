@@ -15,7 +15,7 @@ export class DashboardComponent implements OnInit {
               private alertsService: AlertsService) {}
 
   ngOnInit(): void {
-    if (AuthService.loggedIn)
+    if (AuthService.loggedIn())
       return this.navigateByUrl('/secret-dashboard');
   }
 

@@ -1,25 +1,35 @@
 import { IArtifact } from '../../api/artifact/artifact.interfaces';
 
-export const parseLocation = (artifact: IArtifact): IArtifact => {
-  if (artifact._parsedLocation) return artifact;
+export interface ILocation {
+  location: string;
 
-  artifact._unparsedLocation = artifact.location;
+  _unparsedLocation?: string;
+  _parsedLocation?: boolean;
+  mimeType?: string;
+}
 
-  switch (artifact.mimeType) {
-    case 'application/x-www-form-urlencoded':
-      artifact.location = decodeURIComponent(artifact.location);
-      break;
-    default:
-      throw TypeError(`Not implemented: ${artifact.mimeType}`);
-  }
+export const parseLocation = <T extends ILocation>(locationObj: T): typeof locationObj => {
+  if (locationObj._parsedLocation) return locationObj;
 
-  artifact._parsedLocation = true;
+  locationObj._unparsedLocation = locationObj.location;
 
-  return artifact;
+  if (locationObj.hasOwnProperty('mimeType'))
+    switch (locationObj.mimeType) {
+      case 'application/x-www-form-urlencoded':
+        locationObj.location = decodeURIComponent(locationObj.location);
+        break;
+      default:
+        throw TypeError(`Not implemented: ${locationObj.mimeType}`);
+    }
+  else locationObj.location = decodeURIComponent(locationObj.location);
+
+  locationObj._parsedLocation = true;
+
+  return locationObj;
 };
 
 export const parseContent = (artifact: IArtifact): string | any => {
-  artifact = parseLocation(artifact);
+  artifact = parseLocation<IArtifact>(artifact);
 
   switch (artifact.contentType) {
     case 'image/jpeg':

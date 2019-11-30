@@ -1,6 +1,7 @@
 import { ICategoryEnum } from '../category-enum/category-enum.interfaces';
 import { IArtifact } from '../artifact/artifact.interfaces';
 
+
 export interface ICategorise {
   id: number;
 

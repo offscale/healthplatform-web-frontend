@@ -14,6 +14,7 @@ import { ICategoryEnum } from '../../../api/category-enum/category-enum.interfac
 import { ArtifactService } from '../../../api/artifact/artifact.service';
 import { IArtifact } from '../../../api/artifact/artifact.interfaces';
 import { parseLocation } from '../../artifacts/artifacts.utils';
+import { parseBeforeJsonArray, parseOutJsonArray } from '../categorise.utils';
 
 
 @Component({
@@ -33,12 +34,15 @@ export class CategoriseCreateComponent implements OnInit, AfterViewInit {
 
   createForm = this.fb.group({
     id: [''],
-    artifact: ['', Validators.required],
+    artifact_location: ['', Validators.required],
+    categoryEnumName: ['', Validators.required],
     category: ['', Validators.required],
     username: [''],
     createdAt: [''],
     updatedAt: ['']
   });
+  enumValueToArray = parseOutJsonArray;
+
   public categoryEnums: ICategoryEnum[];
   JSON: JSON = JSON;
 
@@ -70,6 +74,9 @@ export class CategoriseCreateComponent implements OnInit, AfterViewInit {
       this.alertsService.add('Invalid form');
       return;
     }
+
+    categorise.category_enum_name = this.categoryEnum.name;
+
     this.categoriseService
       .create(categorise)
       .subscribe(
@@ -78,15 +85,11 @@ export class CategoriseCreateComponent implements OnInit, AfterViewInit {
       );
   }
 
-  enumValueToArray(value?: string): string[] {
-    if (value == null || !value.length) return [];
-    return JSON.parse(value.substr(value.indexOf('['), value.lastIndexOf(']')));
-  }
 
-  parseAndReturnCategoryName(selection: MatSelect) {
-    if (selection == null) return null;
-    const categoryEnumName = selection.value.slice(0, selection.value.indexOf('['));
-    this.createForm.patchValue({ categoryEnumName });
+  parseAndReturnCategoryName(selection: MatSelect): string | undefined {
+    const categoryEnumName = parseBeforeJsonArray(selection);
+    if (categoryEnumName != null)
+      this.createForm.patchValue({ categoryEnumName });
     return categoryEnumName;
   }
 }

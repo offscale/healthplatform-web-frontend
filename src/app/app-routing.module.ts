@@ -30,7 +30,7 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'triage',
+    path: 'categorise',
     loadChildren: () => import('./categorise/categorise.module').then(m => m.CategoriseModule),
     canActivate: [AuthGuard]
   },
@@ -38,7 +38,12 @@ const routes: Routes = [
     path: 'category-enum',
     loadChildren: () => import('./category-enum/category-enum.module').then(m => m.CategoryEnumModule),
     canActivate: [AuthGuard]
-  }
+  },
+  {
+    path: 'triage',
+    loadChildren: () => import('./triage/triage.module').then(m => m.TriageModule),
+    canActivate: [AuthGuard]
+  },
 ];
 
 export const getRedirectUrl = (url: string): string | null => new URLSearchParams(url.slice(1)).get('redirectUrl');

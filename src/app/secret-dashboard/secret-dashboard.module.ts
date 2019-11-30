@@ -9,18 +9,19 @@ import { MatButtonModule, MatCardModule, MatIconModule } from '@angular/material
 import { SecretDashboardComponent } from './secret-dashboard.component';
 import { secretDashboardRoutes } from './secret-dashboard.routes';
 import { BannerDisplayModule } from '../banner-display/banner-display.module';
+import { PerformanceKpisModule } from '../performance-kpis/performance-kpis.module';
 
 
 @NgModule({
-  imports: [
-    CommonModule, RouterModule, RouterModule.forChild(secretDashboardRoutes),
+    imports: [
+        CommonModule, RouterModule, RouterModule.forChild(secretDashboardRoutes),
 
-    FlexModule,
+        FlexModule,
 
-    MatIconModule, MatButtonModule, MatCardModule,
+        MatIconModule, MatButtonModule, MatCardModule,
 
-    BannerDisplayModule
-  ],
+        BannerDisplayModule, PerformanceKpisModule
+    ],
   declarations: [SecretDashboardComponent]
 })
 export class SecretDashboardModule {}

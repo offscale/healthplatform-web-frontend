@@ -12,7 +12,7 @@
   <!-- artifact_location Column -->
   <ng-container matColumnDef="artifact_location">
     <th mat-header-cell *matHeaderCellDef> artifact_location </th>
-    <td mat-cell *matCellDef="let element"> {{element.artifact_location}} </td>
+    <td mat-cell *matCellDef="let element"> {{element.location}} </td>
   </ng-container>
 
   <!-- category Column -->
@@ -41,5 +41,5 @@
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"
-      [routerLink]="['/', 'triage', row.artifact_location]"></tr>
+      [routerLink]="['/', 'triage', row._unparsedLocation]"></tr>
 </table>

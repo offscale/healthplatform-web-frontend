@@ -5,6 +5,7 @@ import { MatTableDataSource } from '@angular/material';
 import { ICategorise } from '../../../api/categorise/categorise.interfaces';
 import { CategoriseService } from '../../../api/categorise/categorise.service';
 import { AlertsService } from '../../alerts/alerts.service';
+import { ILocation, parseLocation } from '../../artifacts/artifacts.utils';
 
 
 @Component({
@@ -14,10 +15,11 @@ import { AlertsService } from '../../alerts/alerts.service';
 })
 export class CategoriseTableComponent implements OnInit {
   categorises: ICategorise[];
-  dataSource: MatTableDataSource<ICategorise>;
+  dataSource: MatTableDataSource<ICategorise & ILocation>;
   displayedColumns: string[] = [
-    'id', 'artifact_location', 'category', 'username'
-    // , 'createdAt', 'updatedAt'
+    'updatedAt',
+    'id', 'artifact_location', 'category', 'username',
+    // , 'createdAt',
   ];
 
   constructor(private alertsService: AlertsService,
@@ -26,10 +28,11 @@ export class CategoriseTableComponent implements OnInit {
   ngOnInit() {
     this.categoriseService
       .getAll()
-      .subscribe(categorises => {
-          this.categorises = categorises;
-          this.dataSource = new MatTableDataSource(categorises);
-        },
+      .subscribe(
+        categorises => this.dataSource = new MatTableDataSource(
+          categorises
+            .map(categorise => Object.assign(categorise, { location: categorise.artifact_location }))
+            .map(parseLocation)),
         this.alertsService.add.bind(this.alertsService)
       );
   }

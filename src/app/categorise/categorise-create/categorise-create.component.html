@@ -21,7 +21,7 @@
   </mat-form-field>
 
   <mat-form-field fxFlex="100">
-    <mat-select placeholder="artifact" formControlName="artifact">
+    <mat-select placeholder="artifact" formControlName="artifact_location">
       <ng-container *ngIf="artifacts != null && artifacts.length > 0">
         <mat-option *ngFor="let artifact of artifacts.map(parseArtifactLocation)" [value]="artifact._unparsedLocation">
           {{artifact.location}} {{artifact.meta}}
@@ -30,12 +30,12 @@
     </mat-select>
   </mat-form-field>
 
-  <div fxLayout="row" fxLayoutGap="20px">
+  <div fxLayout="row" fxLayoutGap="20px" *ngIf="this.createForm != null">
     <button fxFlex mat-raised-button color="primary" type="submit" [disabled]="!createForm.valid">
       Save
     </button>
-    <a fxFlex mat-raised-button color="accent" [disabled]="!this.createForm.get('artifact').value.length"
-       [routerLink]="['/', 'artifact', this.createForm.get('artifact').value]">
+    <a fxFlex mat-raised-button color="accent" [disabled]="!this.createForm.get('artifact_location').value.length"
+       [routerLink]="['/', 'artifact', this.createForm.get('artifact_location').value]">
       View
     </a>
   </div>
