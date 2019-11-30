@@ -25,6 +25,11 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: 'artifact',
+    loadChildren: () => import('./artifacts/artifact/artifact.module').then(m => m.ArtifactModule),
+    canActivate: [AuthGuard]
+  },
+  {
     path: 'triage',
     loadChildren: () => import('./categorise/categorise.module').then(m => m.CategoriseModule),
     canActivate: [AuthGuard]

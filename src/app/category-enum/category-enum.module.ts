@@ -16,6 +16,7 @@ import {
 } from '@angular/material';
 
 import { CategoryEnumService } from '../../api/category-enum/category-enum.service';
+import { BannerDisplayModule } from '../banner-display/banner-display.module';
 import { CategoryEnumCreateComponent } from './category-enum-create/category-enum-create.component';
 import { CategoryEnumTableComponent } from './category-enum-table/category-enum-table.component';
 import { CategoryEnumComponent } from './category-enum.component';
@@ -26,11 +27,14 @@ import { categoryEnumRoutes } from './category-enum.routes';
   declarations: [CategoryEnumComponent, CategoryEnumCreateComponent, CategoryEnumTableComponent],
   imports: [
     CommonModule, RouterModule, RouterModule.forChild(categoryEnumRoutes),
-    ReactiveFormsModule,
+    ReactiveFormsModule, FormsModule,
 
     FlexModule,
 
-    MatFormFieldModule, MatInputModule, MatButtonModule, MatTableModule, MatSelectModule, MatListModule, MatIconModule, FormsModule,
+    MatFormFieldModule, MatInputModule, MatButtonModule, MatTableModule,
+    MatSelectModule, MatListModule, MatIconModule,
+
+    BannerDisplayModule
   ],
   exports: [CategoryEnumCreateComponent, CategoryEnumTableComponent],
   providers: [CategoryEnumService]

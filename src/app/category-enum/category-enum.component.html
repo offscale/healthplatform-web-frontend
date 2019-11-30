@@ -1,13 +1,9 @@
-<h1>CategoriseEnum</h1>
+<app-banner-display></app-banner-display>
 
-<div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="25px">
-  <div fxFlex="20">
-    <h2>Create</h2>
-    <app-category-enum-create></app-category-enum-create>
-  </div>
+<h2 class="page-margin">Category enumerations</h2>
 
-  <div fxFlex>
-    <h2>List</h2>
-    <app-category-enum-table></app-category-enum-table>
-  </div>
+<div class="page-margin" fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="25px">
+  <app-category-enum-create fxFlex="20"></app-category-enum-create>
+
+  <app-category-enum-table fxFlex></app-category-enum-table>
 </div>

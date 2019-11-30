@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { MatTableDataSource } from '@angular/material';
 
 import { CategoryEnumService } from '../../../api/category-enum/category-enum.service';
-import { AlertsService } from '../../alerts/alerts.service';
 import { ICategoryEnum } from '../../../api/category-enum/category-enum.interfaces';
-import { Router } from '@angular/router';
+import { AlertsService } from '../../alerts/alerts.service';
 
 
 @Component({

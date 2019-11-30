@@ -1,0 +1,17 @@
+.bg {
+  width: 100%;
+  height: 100vh;
+  /* background: url('https://www.aquaholicsonline.com.au/assets/alt_1/lf-lw050150.jpg?1565930428') no-repeat;*/
+  background-size: cover !important;
+  color: white;
+  text-align: center;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.mat-button-toggle-label-content {
+  line-height: 0 !important;
+  padding: 12px 10px 10px 10px !important
+}

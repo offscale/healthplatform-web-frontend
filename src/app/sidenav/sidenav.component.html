@@ -9,11 +9,14 @@
     <mat-toolbar color="primary" style="padding-left: 0 !important">
       <app-server-status></app-server-status>
     </mat-toolbar>
-    <mat-nav-list>
+    <mat-nav-list id="sidebar-items">
       <a *ngIf="!loggedIn()" mat-list-item routerLink="/auth">Auth</a>
       <a *ngIf="hasRole('admin')" mat-list-item routerLink="/admin">Admin</a>
       <ng-container *ngIf="loggedIn()">
-        <a mat-list-item routerLink="/secret-dashboard">Secret dashboard</a>
+        <a mat-list-item routerLink="/secret-dashboard">Dashboard</a>
+        <a mat-list-item routerLink="/artifact">Images</a>
+        <a mat-list-item routerLink="/category-enum">Categories</a>
+        <a mat-list-item routerLink="/triage">Triage</a>
         <a mat-list-item routerLink="/auth/logout">Logout</a>
       </ng-container>
     </mat-nav-list>
@@ -28,6 +31,33 @@
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       <a routerLink="/">healthplatform.io</a>
+      <!--
+      <div fxLayout="row" fxLayoutGap="20px">
+      -->
+      <span class="example-fill-remaining-space"></span>
+      <mat-nav-list fxLayout="row" fxHide.lt-sm>
+        <a mat-list-item
+           routerLink="/artifact"
+           routerLinkActive="active-list-item"
+           [routerLinkActiveOptions]="{exact: true}">
+          <mat-icon>image</mat-icon>
+          Images
+        </a>
+        <a mat-list-item
+           routerLink="/category-enum"
+           routerLinkActive="active-list-item"
+           [routerLinkActiveOptions]="{exact: true}">
+          <mat-icon>photo_library</mat-icon>
+          Categories
+        </a>
+        <a mat-list-item
+           routerLink="/triage"
+           routerLinkActive="active-list-item"
+           [routerLinkActiveOptions]="{exact: true}">
+          <mat-icon>explore</mat-icon>
+          Triage
+        </a>
+      </mat-nav-list>
     </mat-toolbar>
     <!-- Add Content Here -->
   </mat-sidenav-content>

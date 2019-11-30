@@ -39,7 +39,9 @@ export class AuthService {
     localStorage.removeItem('access-token');
     localStorage.removeItem('user');
     this.router
-      .navigate(['/'], this.router.url === '/auth/logout' ? {} : { queryParams: { redirectUrl: this.router.url } });
+      .navigate(['/'], this.router.url === '/auth/logout' ? {} : { queryParams: { redirectUrl: this.router.url } })
+      .then(() => {})
+      .catch(this.alertsService.add.bind(this.alertsService));
   }
 
   _login(loginResp: ILoginResp) {
@@ -69,8 +71,6 @@ export class AuthService {
   }
 
   public signinup(user: IAuthReq): Observable<IAuthReq | ILoginResp> {
-
-
     return (this.login(user) as Observable<ILoginResp>)
       .pipe(
         catchError((err: HttpErrorResponse) => {

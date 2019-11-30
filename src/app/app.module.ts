@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
+import { FlexLayoutModule } from '@angular/flex-layout';
+
 import { LayoutModule } from '@angular/cdk/layout';
 import {
   MatButtonModule,
@@ -15,12 +17,14 @@ import {
   MatToolbarModule
 } from '@angular/material';
 
+import { BannerDisplayModule } from './banner-display/banner-display.module';
 import { AlertsModule } from './alerts/alerts.module';
 import { SidenavModule } from './sidenav/sidenav.module';
 import { AuthGuard } from './auth/auth.guard';
 import { AuthInterceptor } from './auth/auth.interceptors';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+
 
 @NgModule({
   declarations: [
@@ -41,8 +45,10 @@ import { AppComponent } from './app.component';
     MatGridListModule,
     MatCardModule,
     MatMenuModule,
+    FlexLayoutModule,
+    SidenavModule,
     AlertsModule.forRoot(),
-    SidenavModule
+    BannerDisplayModule
   ],
   providers: [
     AuthGuard,

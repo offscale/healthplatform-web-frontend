@@ -9,6 +9,8 @@ import { ICategoryEnum } from './category-enum.interfaces';
 
 @Injectable()
 export class CategoryEnumService {
+  categoryEnums: ICategoryEnum[];
+
   constructor(private http: HttpClient) {
   }
 

@@ -6,6 +6,7 @@ import { MatButtonModule, MatIconModule, MatListModule, MatSidenavModule, MatToo
 
 import { ServerStatusModule } from '../server-status/server-status.module';
 import { SidenavComponent } from './sidenav.component';
+import { FlexLayoutModule, FlexModule } from '@angular/flex-layout';
 
 
 @NgModule({
@@ -17,7 +18,9 @@ import { SidenavComponent } from './sidenav.component';
     MatToolbarModule,
     MatSidenavModule,
     RouterModule,
-    ServerStatusModule
+    ServerStatusModule,
+    FlexModule,
+    FlexLayoutModule
   ],
   declarations: [SidenavComponent],
   exports: [SidenavComponent]

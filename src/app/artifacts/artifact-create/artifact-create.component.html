@@ -1,0 +1,28 @@
+<form [formGroup]="createForm" fxLayout="column" (ngSubmit)="submit()">
+  <mat-form-field fxFlex="100">
+    <input matInput placeholder="location" formControlName="location"
+           (focusout)="setContentType()">
+  </mat-form-field>
+
+  <mat-form-field fxFlex="100">
+    <input matInput placeholder="mimeType" formControlName="mimeType">
+  </mat-form-field>
+
+  <mat-form-field fxFlex="100">
+    <input matInput placeholder="contentType" formControlName="contentType">
+  </mat-form-field>
+
+  <mat-form-field fxFlex="100">
+    <input matInput placeholder="metadata" formControlName="meta">
+  </mat-form-field>
+
+
+  <button mat-raised-button color="primary" type="submit" [disabled]="!isCreateFormValid()">Add</button>
+</form>
+
+
+<!--
+<pre>createForm.value   = {{ createForm.value | json }}</pre>
+<pre>createForm.valid   = {{ createForm.valid | json }}</pre>
+<pre>createForm.invalid = {{ createForm.invalid | json }}</pre>
+-->

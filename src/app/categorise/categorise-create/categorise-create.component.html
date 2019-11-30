@@ -1,14 +1,33 @@
 <form [formGroup]="createForm" fxLayout="column" (ngSubmit)="submit()">
+  <div style="border-bottom: #919191 solid thin; color: rgba(0, 0, 0, 0.42);">
+    <mat-select placeholder="classifier" #categoryEnumSelection>
+      <mat-option *ngFor="let categoryEnum of categoryEnums; let nameEnum"
+                  [value]="[categoryEnum.name, JSON.stringify(categoryEnum.enumeration)].join(' ')">
+        {{categoryEnum.name}} {{JSON.stringify(categoryEnum.enumeration) }}
+      </mat-option>
+    </mat-select>
+  </div>
+
   <mat-form-field fxFlex="100">
-    <mat-select placeholder="category" formControlName="category">
-      <mat-option value="primary">Primary</mat-option>
-      <mat-option value="accent">Accent</mat-option>
-      <mat-option value="warn">Warn</mat-option>
+    <mat-select placeholder="classification" formControlName="category">
+      <ng-container *ngIf="categoryEnumSelection != null && categoryEnumSelection.value != null">
+        <h5 matSubheader
+            style="padding: 0 20px">{{parseAndReturnCategoryName(categoryEnumSelection)}}</h5>
+        <mat-option *ngFor="let category of enumValueToArray(categoryEnumSelection.value)" [value]="category">
+          {{category}}
+        </mat-option>
+      </ng-container>
     </mat-select>
   </mat-form-field>
 
   <mat-form-field fxFlex="100">
-    <input matInput placeholder="artifact" formControlName="artifact">
+    <mat-select placeholder="artifact" formControlName="artifact">
+      <ng-container *ngIf="artifacts != null && artifacts.length > 0">
+        <mat-option *ngFor="let artifact of artifacts.map(parseArtifactLocation)" [value]="artifact._unparsedLocation">
+          {{artifact.location}} {{artifact.meta}}
+        </mat-option>
+      </ng-container>
+    </mat-select>
   </mat-form-field>
 
   <div fxLayout="row" fxLayoutGap="20px">
@@ -16,7 +35,7 @@
       Save
     </button>
     <a fxFlex mat-raised-button color="accent" [disabled]="!this.createForm.get('artifact').value.length"
-       [routerLink]="['/', 'triage', this.createForm.get('artifact').value]">
+       [routerLink]="['/', 'artifact', this.createForm.get('artifact').value]">
       View
     </a>
   </div>

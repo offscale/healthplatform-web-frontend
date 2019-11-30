@@ -7,20 +7,21 @@ import { MatButtonModule, MatCardModule, MatGridListModule, MatIconModule, MatMe
 import { dashboardRoutes } from './dashboard.routes';
 import { DashboardComponent } from './dashboard.component';
 import { FlexModule } from '@angular/flex-layout';
+import { BannerDisplayModule } from '../banner-display/banner-display.module';
 
 
 @NgModule({
-  imports: [
-    CommonModule, RouterModule, RouterModule.forChild(dashboardRoutes),
+    imports: [
+        CommonModule, RouterModule, RouterModule.forChild(dashboardRoutes),
 
-    FlexModule,
+        FlexModule,
 
-    MatGridListModule,
-    MatCardModule,
-    MatMenuModule,
-    MatIconModule,
-    MatButtonModule
-  ],
+        MatGridListModule,
+        MatCardModule,
+        MatMenuModule,
+        MatIconModule,
+        MatButtonModule, BannerDisplayModule
+    ],
   declarations: [DashboardComponent],
   exports: [DashboardComponent]
 })

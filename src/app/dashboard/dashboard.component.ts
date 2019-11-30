@@ -1,8 +1,7 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { NavigationExtras, Router, UrlTree } from '@angular/router';
 
-import { MatSnackBar } from '@angular/material';
-
+import { AuthService } from '../../api/auth/auth.service';
 import { AlertsService } from '../alerts/alerts.service';
 
 
@@ -11,19 +10,19 @@ import { AlertsService } from '../alerts/alerts.service';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent {
-  constructor(public router: Router,
-              private alertsService: AlertsService,
-              private snackBar: MatSnackBar) {}
+export class DashboardComponent implements OnInit {
+  constructor(private router: Router,
+              private alertsService: AlertsService) {}
 
-  openSnackBar(message, action = 'Ok', duration = 5000 /* 5 seconds */) {
-    this.snackBar.open(message, action, { duration });
+  ngOnInit(): void {
+    if (AuthService.loggedIn)
+      return this.navigateByUrl('/secret-dashboard');
   }
 
-  navigateByUrl(url: string) {
+  navigateByUrl(url: string | UrlTree, extras?: NavigationExtras) {
     this
       .router
-      .navigateByUrl(url)
+      .navigateByUrl(url, extras)
       .then(() => {})
       .catch(this.alertsService.add.bind(this.alertsService));
   }

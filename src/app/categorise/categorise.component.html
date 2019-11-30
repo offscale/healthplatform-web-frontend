@@ -1,16 +1,9 @@
-<h1>Triage</h1>
+<app-banner-display></app-banner-display>
 
-<button mat-raised-button id="shift"
-        [ngStyle.xs]="{'height': '30px', 'font-size': 'medium'}"
-        [ngStyle.sm]="{'height': '40px', 'font-size': 'large'}"
-        [ngStyle.md]="{'height': '50px', 'font-size': 'x-large'}"
-        [ngStyle.gt-md]="{'height': '150px', 'font-size': 'xx-large'}">
-  Start shift
-</button>
-
-<div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="25px">
+<div class="page-margin" fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="25px" >
   <div fxFlex="20">
     <h2>Upsert (Insert or Modify)</h2>
+    <a mat-raised-button routerLink="/category-enum" style="margin-bottom: 25px">Add/review categories</a>
     <app-categorise-create></app-categorise-create>
   </div>
 
