@@ -17,7 +17,7 @@ import { CategoriseService } from '../../api/categorise/categorise.service';
   styleUrls: ['./triage.component.css']
 })
 export class TriageComponent implements OnInit {
-  private categoryEnums: ICategoryEnum[];
+  public categoryEnums: ICategoryEnum[];
 
   defaultsForm: FormGroup = this.fb.group({
     defaultCategoryEnum: ['', Validators.required]

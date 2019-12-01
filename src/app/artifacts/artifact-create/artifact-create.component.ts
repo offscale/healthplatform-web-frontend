@@ -1,4 +1,4 @@
-import * as mime from 'mime-types';
+import * as mime from 'mime';
 
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -36,10 +36,11 @@ export class ArtifactCreateComponent {
   setContentType() {
     if (this.createForm.get('location') == null) return;
     try {
-      const contentType = mime.contentType((
-        (p: string) => p.slice(p.lastIndexOf('/') + 1))(
-        new URL(this.createForm.get('location').value).pathname
-      ));
+      const contentType = mime.getType(((p: string) =>
+          p.slice(p.lastIndexOf('/') + 1))(
+            new URL(this.createForm.get('location').value).pathname
+        )
+      );
 
       this.createForm.patchValue({ contentType });
     } catch (e) {
