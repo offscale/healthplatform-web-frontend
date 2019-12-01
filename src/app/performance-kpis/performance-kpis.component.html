@@ -1,12 +1,17 @@
-<div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="25px" class="page-margin">
+<div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="25px" class="page-margin"
+     *ngIf="artifactsLeft != null">
   <mat-card fxFlex>
     <mat-card-header>Images left to triage</mat-card-header>
-    <mat-card-content><h2>571</h2></mat-card-content>
+    <mat-card-content><h2>{{artifactsLeft.length}}</h2></mat-card-content>
   </mat-card>
-
 
   <mat-card fxFlex>
     <mat-card-header>Total images</mat-card-header>
-    <mat-card-content><h2>1591</h2></mat-card-content>
+    <mat-card-content><h2>{{artifacts.length}}</h2></mat-card-content>
+  </mat-card>
+
+  <mat-card fxFlex>
+    <mat-card-header>Triage count</mat-card-header>
+    <mat-card-content><h2>{{categorises.length}}</h2></mat-card-content>
   </mat-card>
 </div>

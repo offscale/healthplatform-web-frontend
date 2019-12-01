@@ -1,0 +1,18 @@
+<ng-container *ngIf="artifactsLeft != null">
+  <button mat-raised-button id="next"
+          [ngStyle.xs]="{'height': '30px', 'font-size': 'medium'}"
+          [ngStyle.sm]="{'height': '40px', 'font-size': 'large'}"
+          [ngStyle.md]="{'height': '50px', 'font-size': 'x-large'}"
+          [ngStyle.gt-md]="{'height': '150px', 'font-size': 'xx-large'}"
+          [disabled]="!artifactsLeft.length"
+          (click)="next()">
+    <ng-container *ngIf="artifactsLeft.length; else nothingLeft">
+      Next
+      <mat-icon>play_arrow</mat-icon>
+    </ng-container>
+
+    <ng-template #nothingLeft>
+      Nothing coming up next! - Maybe you've finished triage? 🧐
+    </ng-template>
+  </button>
+</ng-container>

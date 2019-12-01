@@ -34,10 +34,13 @@ export class ArtifactCreateComponent {
   }
 
   setContentType() {
+    if (this.createForm.get('location') == null) return;
     try {
-      const contentType = mime.contentType(
-        new URL(this.createForm.get('location').value).pathname.slice(1)
-      );
+      const contentType = mime.contentType((
+        (p: string) => p.slice(p.lastIndexOf('/') + 1))(
+        new URL(this.createForm.get('location').value).pathname
+      ));
+
       this.createForm.patchValue({ contentType });
     } catch (e) {
       if (e.message === 'Failed to construct \'URL\': Invalid URL')

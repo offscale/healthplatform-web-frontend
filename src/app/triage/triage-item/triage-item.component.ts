@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { ArtifactService } from '../../api/artifact/artifact.service';
-import { CategoriseService } from '../../api/categorise/categorise.service';
-import { IArtifact } from '../../api/artifact/artifact.interfaces';
+import { IArtifact } from '../../../api/artifact/artifact.interfaces';
+import { ICategorise } from '../../../api/categorise/categorise.interfaces';
+import { ArtifactService } from '../../../api/artifact/artifact.service';
+import { CategoriseService } from '../../../api/categorise/categorise.service';
 import { forkJoin } from 'rxjs';
-import { ICategorise } from '../../api/categorise/categorise.interfaces';
 
 @Component({
-  selector: 'app-performance-kpis',
-  templateUrl: './performance-kpis.component.html',
-  styleUrls: ['./performance-kpis.component.css']
+  selector: 'app-triage-item',
+  templateUrl: './triage-item.component.html',
+  styleUrls: ['./triage-item.component.css']
 })
-export class PerformanceKpisComponent implements OnInit {
+export class TriageItemComponent implements OnInit {
   artifactsLeft: IArtifact[];
   artifacts: IArtifact[];
   categorises: ICategorise[];

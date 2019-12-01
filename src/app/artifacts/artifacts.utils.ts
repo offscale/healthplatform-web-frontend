@@ -36,8 +36,8 @@ export const parseContent = (artifact: IArtifact): string | any => {
     case 'image/png':
     case 'image/bmp':
     case 'image/gif':
-      artifact._content = 'img'; /* `<img src="${artifact.location}" alt="artifact image"
-                                   style="width: 70%" />`;*/
+      artifact._content = `<img src="${artifact.location}" alt="artifact image"
+                                style="width: 70%" id="artifact" />`;
       break;
     default:
       throw TypeError(`Not implemented: ${artifact.mimeType}`);

@@ -1,0 +1,21 @@
+<mat-toolbar color="accent">
+  <mat-toolbar-row fxLayout="row">
+    <h2 fxFlex fxHide.lt-md>Triage:&nbsp;</h2>
+    <small fxFlex fxHide.lt-lg>Keyboard shortcuts available (e.g.: <kbd>3</kbd> for 3rd option).&nbsp;</small>
+    <span fxHide.lt-md class="example-spacer"></span>
+    <p fxFlex fxHide.lt-md>Click image for full screen</p>
+    <span fxHide.lt-md class="example-spacer"></span>
+
+    <mat-button-toggle-group #group="matButtonToggleGroup"
+                             fxLayout="row" fxLayout.lt-sm="column"
+                             [ngStyle.lt-sm]="{width: '100%', 'margin-top': '120px'}">
+      <mat-button-toggle fxFlex *ngFor="let a of ['ungradable', 'non-referable', 'referable']" value="a">
+        <mat-icon>keyboard</mat-icon> {{a}}
+      </mat-button-toggle>
+    </mat-button-toggle-group>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<app-artifact-item></app-artifact-item>
+
+<app-triage-next></app-triage-next>

@@ -1,0 +1,7 @@
+<div style="width: 142.8%"
+     [innerHTML]="artifactContent"
+     [ngStyle.lt-sm]="{bottom: 0, position: 'fixed', height: 'auto'}"
+     [ngStyle.gt-md]="{width: '100%'}"
+     #artifactDiv
+     (click)="toggleFullScreen($event)">
+</div>

@@ -9,6 +9,8 @@ import { ICategorise } from './categorise.interfaces';
 
 @Injectable()
 export class CategoriseService {
+  public queryParams: {[param: string]: string | string[]} = {};
+
   constructor(private http: HttpClient) {
   }
 
@@ -24,7 +26,8 @@ export class CategoriseService {
       .pipe(map(parseDates));
   }
 
-  update(categorise: Partial<ICategorise>, categoriseId: ICategorise['id']): Observable<ICategorise> {
+  update(categorise: Partial<ICategorise>,
+         categoriseId: ICategorise['id']): Observable<ICategorise> {
     return this.http
       .put<ICategorise>(`/api/categorise/${categoriseId}`, categorise)
       .pipe(map(parseDates));
@@ -37,7 +40,9 @@ export class CategoriseService {
 
   getAll(): Observable<ICategorise[]> {
     return this.http
-      .get<{categorises: ICategorise[]}>('/api/categorise')
+      .get<{categorises: ICategorise[]}>('/api/categorise',
+        this.queryParams == null ? {} : { params: this.queryParams }
+      )
       .pipe(
         map(categorises => categorises.categorises),
         map(categorises => categorises.map(parseDates))

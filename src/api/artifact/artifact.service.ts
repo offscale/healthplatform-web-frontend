@@ -43,4 +43,13 @@ export class ArtifactService {
         map(artifacts => artifacts.map(parseDates))
       );
   }
+
+  getNext(): Observable<IArtifact[]> {
+    return this.http
+      .get<{artifacts: IArtifact[]}>('/api/categorise/next')
+      .pipe(
+        map(artifacts => artifacts.artifacts),
+        map(artifacts => artifacts.map(parseDates))
+      );
+  }
 }

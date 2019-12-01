@@ -3,11 +3,12 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { MatSelect } from '@angular/material';
 
-import { removeFalseyProperties } from '../../utils';
+import { removeEmpty, removeFalseyProperties } from '../../utils';
 import { CategoryEnumService } from '../../api/category-enum/category-enum.service';
 import { ICategoryEnum } from '../../api/category-enum/category-enum.interfaces';
 import { AlertsService } from '../alerts/alerts.service';
 import { parseBeforeJsonArray, parseOutJsonArray } from '../categorise/categorise.utils';
+import { CategoriseService } from '../../api/categorise/categorise.service';
 
 
 @Component({
@@ -34,6 +35,7 @@ export class TriageComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
               private alertsService: AlertsService,
+              private categoriseService: CategoriseService,
               private categoryEnumService: CategoryEnumService) {
 
   }
@@ -47,22 +49,14 @@ export class TriageComponent implements OnInit {
   }
 
   submitDefaults() {
-    console.info('TriageComponent::defaultsForm.value:', this.defaultsForm.value, ';');
+    if (this.defaultsForm.value != null && this.defaultsForm.get('defaultCategoryEnum') != null)
+    localStorage.setItem('defaultCategoryEnum', this.defaultsForm.get('defaultCategoryEnum').value);
   }
 
   submitFilter() {
-    console.info('TriageComponent::filterForm.value:', this.filterForm.value, ';');
-    /*
-    const artifact: IArtifact = removeFalseyProperties(
-      this.filterForm.value
-    ) as unknown as IArtifact;
-    if (artifact == null
-      || Object.keys(artifact).length === 0
-      || !this.isCreateFormValid()) {
-      this.alertsService.add('Invalid form');
-      return;
-    }
-    */
+    const queryParams = removeEmpty(this.filterForm.value);
+    if (Object.keys(queryParams).length > 0)
+      this.categoriseService.queryParams = queryParams;
   }
 
   isCreateFormValid(): boolean {

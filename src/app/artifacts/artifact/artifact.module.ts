@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { FlexModule } from '@angular/flex-layout';
+import { FlexLayoutModule, FlexModule } from '@angular/flex-layout';
 
 import {
   MatButtonModule, MatButtonToggleModule,
@@ -21,6 +21,7 @@ import { ArtifactTableComponent } from '../artifact-table/artifact-table.compone
 import { ArtifactsComponent } from '../artifacts.component';
 import { artifactsRoutes } from '../artifacts.routes';
 import { ArtifactComponent } from './artifact.component';
+import { ArtifactItemModule } from '../../artifact-item/artifact-item.module';
 
 
 @NgModule({
@@ -34,9 +35,9 @@ import { ArtifactComponent } from './artifact.component';
     FlexModule,
 
     MatFormFieldModule, MatInputModule, MatButtonModule,
-    MatTableModule, MatSelectModule, MatListModule, MatIconModule, MatToolbarModule, MatButtonToggleModule
+    MatTableModule, MatSelectModule, MatListModule, MatIconModule, MatToolbarModule, MatButtonToggleModule, FlexLayoutModule, ArtifactItemModule
   ],
-  exports: [ArtifactCreateComponent, ArtifactTableComponent],
+  exports: [ArtifactCreateComponent, ArtifactTableComponent, ArtifactComponent],
   providers: [ArtifactService]
 })
 export class ArtifactModule {}

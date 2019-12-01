@@ -1,0 +1,11 @@
+#next {
+  width: 100%;
+  background-color: lightseagreen;
+  color: whitesmoke;
+  margin-top: 25px;
+}
+
+#next:disabled {
+  color: rgba(0, 0, 0, 0.26);
+  background-color: rgba(0, 0, 0, 0.12);
+}

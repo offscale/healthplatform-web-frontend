@@ -13,3 +13,13 @@ export const removeFalseyProperties = (obj: {[key: string]: any}): typeof obj =>
     .filter(o => !o.hasOwnProperty('null'))
     .reduce((a, b) => Object.assign(a, b), {});
 
+
+export const removeEmpty = (obj: {[key: string]: any}): typeof obj => {
+  Object
+    .entries(obj)
+    .forEach(([key, val])  =>
+      (val && typeof val === 'object') && removeEmpty(val)
+      || (val === null || val === '') && delete obj[key]
+  );
+  return obj;
+};

@@ -1,26 +1,23 @@
 <app-performance-kpis></app-performance-kpis>
 
-
 <div class="page-margin" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="25px"
      *ngIf="categoryEnums != null && categoryEnums.length > 0">
   <form [formGroup]="filterForm" (ngSubmit)="submitFilter()"
         fxFlex="50" fxLayout="column">
     <h3>Filter</h3>
 
-    <div fxLayout="row" fxFlex="100" fxLayoutGap="25px">
+    <div fxLayout="row" fxLayout.lt-sm="column" fxFlex="100" fxLayoutGap="25px">
       <mat-form-field fxFlex>
-        <input matInput
-               placeholder="username" formControlName="username">
+        <input matInput placeholder="username" formControlName="username">
       </mat-form-field>
 
 
       <mat-form-field fxFlex>
-        <input matInput
-               placeholder="Newer than" formControlName="updatedAt">
+        <input matInput placeholder="Newer than" formControlName="updatedAt">
       </mat-form-field>
     </div>
 
-    <div fxLayout="row" fxFlex="100" fxLayoutGap="25px">
+    <div fxLayout="row" fxLayout.lt-sm="column" fxFlex="100" fxLayoutGap="25px">
       <mat-form-field fxFlex>
         <mat-label>Category enumeration</mat-label>
         <mat-select matNativeControl formControlName="categoryEnum">
@@ -36,9 +33,8 @@
           <h5 matSubheader style="padding: 0 20px">
             {{parseAndReturnCategoryName(filterForm.get('categoryEnum').value)}}
           </h5>
-          <mat-option
-            *ngFor="let category of enumValueToArray(filterForm.get('categoryEnum').value)"
-            [value]="category">
+          <mat-option *ngFor="let category of enumValueToArray(filterForm.get('categoryEnum').value)"
+                      [value]="category">
             {{category}}
           </mat-option>
         </mat-select>
@@ -70,12 +66,4 @@
   </form>
 </div>
 
-<button mat-raised-button id="next"
-        [ngStyle.xs]="{'height': '30px', 'font-size': 'medium'}"
-        [ngStyle.sm]="{'height': '40px', 'font-size': 'large'}"
-        [ngStyle.md]="{'height': '50px', 'font-size': 'x-large'}"
-        [ngStyle.gt-md]="{'height': '150px', 'font-size': 'xx-large'}"
-        routerLink="/triage">
-  Next
-  <mat-icon>play_arrow</mat-icon>
-</button>
+<app-triage-next></app-triage-next>
