@@ -31,12 +31,18 @@
       <mat-form-field fxFlex>
         <mat-select placeholder="classification" formControlName="category">
           <h5 matSubheader style="padding: 0 20px">
-            {{parseAndReturnCategoryName(filterForm.get('categoryEnum').value)}}
+            {{parseAndReturnCategoryName(filterForm.get('categoryEnum'))}}
           </h5>
-          <mat-option *ngFor="let category of enumValueToArray(filterForm.get('categoryEnum').value)"
-                      [value]="category">
-            {{category}}
+          <mat-option [value]="null">
+            <em>
+            <- Unset ->
+            </em>
           </mat-option>
+
+          <mat-option *ngFor="let category of enumValueToArray(filterForm.get('categoryEnum').value)"
+                                   [value]="category">
+          {{category}}
+        </mat-option>
         </mat-select>
       </mat-form-field>
     </div>
@@ -53,7 +59,7 @@
     <mat-form-field fxFlex="100">
       <mat-label>Default category enumeration</mat-label>
       <mat-select matNativeControl required formControlName="defaultCategoryEnum">
-        <mat-option [value]="categoryEnum.name"
+        <mat-option [value]="[categoryEnum.name, JSON.stringify(categoryEnum.enumeration)].join(' ')"
                     *ngFor="let categoryEnum of categoryEnums">
           {{categoryEnum.name}} {{JSON.stringify(categoryEnum.enumeration)}}
         </mat-option>

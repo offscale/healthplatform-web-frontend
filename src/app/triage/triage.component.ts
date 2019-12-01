@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { MatSelect } from '@angular/material';
 
@@ -20,13 +20,13 @@ export class TriageComponent implements OnInit {
   public categoryEnums: ICategoryEnum[];
 
   defaultsForm: FormGroup = this.fb.group({
-    defaultCategoryEnum: ['', Validators.required]
+    defaultCategoryEnum: [localStorage.getItem('defaultCategoryEnum') || '', Validators.required]
   });
 
   filterForm: FormGroup = this.fb.group({
     username: [localStorage.getItem('user'), Validators.required],
     category: [''],
-    categoryEnum: [''],
+    categoryEnum: [localStorage.getItem('defaultCategoryEnum') || ''],
     updatedAt: [new Date(2019, 2, 15).toISOString()]
   });
   enumValueToArray = parseOutJsonArray;
@@ -50,7 +50,7 @@ export class TriageComponent implements OnInit {
 
   submitDefaults() {
     if (this.defaultsForm.value != null && this.defaultsForm.get('defaultCategoryEnum') != null)
-    localStorage.setItem('defaultCategoryEnum', this.defaultsForm.get('defaultCategoryEnum').value);
+      localStorage.setItem('defaultCategoryEnum', this.defaultsForm.get('defaultCategoryEnum').value);
   }
 
   submitFilter() {
@@ -66,8 +66,9 @@ export class TriageComponent implements OnInit {
     return keys.length > 0 && keys.indexOf('location') > -1;
   }
 
-  parseAndReturnCategoryName(selection: MatSelect): string | undefined {
+  parseAndReturnCategoryName(selection: MatSelect | AbstractControl): string | undefined {
     const categoryEnumName = parseBeforeJsonArray(selection);
+
     if (categoryEnumName != null)
       this.filterForm.patchValue({ categoryEnumName });
     return categoryEnumName;
