@@ -34,7 +34,7 @@ export class CategoriseCreateComponent implements OnInit, AfterViewInit {
 
   createForm = this.fb.group({
     id: [''],
-    artifact_location: ['', Validators.required],
+    artifactLocation: ['', Validators.required],
     categoryEnumName: ['', Validators.required],
     category: ['', Validators.required],
     username: [''],
@@ -75,7 +75,7 @@ export class CategoriseCreateComponent implements OnInit, AfterViewInit {
       return;
     }
 
-    categorise.category_enum_name = this.categoryEnum.name;
+    categorise.categoryEnumName = this.categoryEnum.name;
 
     this.categoriseService
       .create(categorise)

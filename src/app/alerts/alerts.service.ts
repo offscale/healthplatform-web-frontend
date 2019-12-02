@@ -13,8 +13,6 @@ export class AlertsService {
   }
 
   static s_from_alert(alert: string | TAlert | Error): string {
-    console.warn('AlertsService::s_from_alert::alert:',
-      alert, ';');
     if (alert == null) return 'undefined error';
 
     const toKnownElse = ((k: string | number, els?: string): string => {

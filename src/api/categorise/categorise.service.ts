@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -11,12 +11,12 @@ import { ICategorise } from './categorise.interfaces';
 export class CategoriseService {
   public queryParams: {[param: string]: string | string[]} = {};
 
-  constructor(private http: HttpClient) {
-  }
+  constructor(private http: HttpClient) {}
 
-  create(categorise: ICategorise): Observable<ICategorise> {
+  create(categorise: ICategorise, httpOptions?: {params: HttpParams}): Observable<ICategorise> {
     return this.http
-      .post<ICategorise>('/api/categorise', categorise)
+      .post<ICategorise>('/api/categorise', categorise,
+        httpOptions == null || httpOptions.params == null ? {} : { params: httpOptions.params })
       .pipe(map(parseDates));
   }
 

@@ -18,7 +18,7 @@ export class CategoriseTableComponent implements OnInit {
   dataSource: MatTableDataSource<ICategorise & ILocation>;
   displayedColumns: string[] = [
     'updatedAt',
-    'id', 'artifact_location', 'category', 'username',
+    'id', 'artifactLocation', 'category', 'username',
     // , 'createdAt',
   ];
 
@@ -31,7 +31,7 @@ export class CategoriseTableComponent implements OnInit {
       .subscribe(
         categorises => this.dataSource = new MatTableDataSource(
           categorises
-            .map(categorise => Object.assign(categorise, { location: categorise.artifact_location }))
+            .map(categorise => Object.assign(categorise, { location: categorise.artifactLocation }))
             .map(parseLocation)),
         this.alertsService.add.bind(this.alertsService)
       );

@@ -3,10 +3,10 @@ import { IArtifact } from '../artifact/artifact.interfaces';
 
 
 export interface ICategorise {
-  id: number;
+  id?: number;
 
-  artifact_location: string;
-  category_enum_name: string;
+  artifactLocation: string;
+  categoryEnumName: string;
 
   category: string;
   username: string;

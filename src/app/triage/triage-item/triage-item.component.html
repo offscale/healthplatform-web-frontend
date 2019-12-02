@@ -6,10 +6,11 @@
     <p fxFlex fxHide.lt-md>Click image for full screen</p>
     <span fxHide.lt-md class="example-spacer"></span>
 
-    <mat-button-toggle-group #enumerationGroup
-                             fxLayout="row" fxLayout.lt-sm="column"
+    <mat-button-toggle-group fxLayout="row" fxLayout.lt-sm="column"
                              color="primary"
-                             [value]="enumerationGroupValue"
+                             #group="matButtonToggleGroup"
+                             (change)="categorySet(group.value)"
+                             [(ngModel)]="enumerationGroupValue"
                              [ngStyle.lt-sm]="{width: '100%', 'margin-top': '120px'}">
       <mat-button-toggle fxFlex *ngFor="let enumeration of categoryEnum.enumeration" [value]="enumeration">
         <mat-icon>keyboard</mat-icon>
