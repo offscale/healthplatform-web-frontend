@@ -1,4 +1,4 @@
-<div style="margin-left: 20px" fxLayout="row">
+<div style="margin-left: 20px" fxLayout="row" fxLayout.lt-md="column">
   <h1 class="mat-h1" fxFlex="30">
     Welcome surgeons!
   </h1>
@@ -6,7 +6,9 @@
   <p fxFlex="40">This was created to help you classify/triage artifacts&mdash;such as images&mdash;very quickly.</p>
 
   <a class="page-margin bottom-left-only-border"
-     routerLink="/auth" mat-flat-button color="accent" fxFlex style="font-size: x-large">
+     routerLink="/auth" mat-flat-button color="accent" fxFlex
+     style="font-size: x-large"
+     [ngStyle.lt-lg]="{'font-size': 'medium'}">
     Create an account or authenticate
   </a>
 </div>

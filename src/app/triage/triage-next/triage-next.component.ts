@@ -1,15 +1,12 @@
 import { AfterViewInit, Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { forkJoin } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { IArtifact } from '../../../api/artifact/artifact.interfaces';
-import { ICategorise } from '../../../api/categorise/categorise.interfaces';
 import { ArtifactService } from '../../../api/artifact/artifact.service';
 import { CategoriseService } from '../../../api/categorise/categorise.service';
 import { parseLocation } from '../../artifacts/artifacts.utils';
-
 import { AlertsService } from '../../alerts/alerts.service';
 
 
@@ -20,8 +17,6 @@ import { AlertsService } from '../../alerts/alerts.service';
 })
 export class TriageNextComponent implements AfterViewInit {
   artifactsLeft: IArtifact[];
-  artifacts: IArtifact[];
-  categorises: ICategorise[];
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -30,22 +25,13 @@ export class TriageNextComponent implements AfterViewInit {
               private alertsService: AlertsService) { }
 
   ngAfterViewInit() {
-    forkJoin([
-      this.artifactService
-        .getAll()
-        .pipe(
-          map(artifacts => artifacts.map(parseLocation))
-        ),
-      this.artifactService
-        .getNext()
-        .pipe(
-          map(artifacts => artifacts.map(parseLocation))
-        ),
-      this.categoriseService
-        .getAll()
-    ])
-      .subscribe((result: [IArtifact[], IArtifact[], ICategorise[]]) =>
-        [this.artifactsLeft, this.artifacts, this.categorises] = result
+    this.categoriseService
+      .getNext()
+      .pipe(
+        map(artifacts => artifacts.map(parseLocation))
+      )
+      .subscribe((artifacts: IArtifact[]) =>
+        this.artifactsLeft = artifacts
       );
   }
 

@@ -6,12 +6,15 @@ import { map } from 'rxjs/operators';
 
 import { parseDates } from '../shared';
 import { ICategorise } from './categorise.interfaces';
+import { IArtifact } from '../artifact/artifact.interfaces';
 
 @Injectable()
 export class CategoriseService {
-  public queryParams: {[param: string]: string | string[]} = {};
+  public httpParams: HttpParams;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    this._setHttpParamsFromLocalStorage();
+  }
 
   create(categorise: ICategorise, httpOptions?: {params: HttpParams}): Observable<ICategorise> {
     return this.http
@@ -41,11 +44,30 @@ export class CategoriseService {
   getAll(): Observable<ICategorise[]> {
     return this.http
       .get<{categorises: ICategorise[]}>('/api/categorise',
-        this.queryParams == null ? {} : { params: this.queryParams }
+        this.httpParams == null ? {} : { params: this.httpParams }
       )
       .pipe(
         map(categorises => categorises.categorises),
         map(categorises => categorises.map(parseDates))
       );
+  }
+
+  getNext(httpOptions?: {params: HttpParams}): Observable<IArtifact[]> {
+    return this.http
+      .get<{artifacts: IArtifact[]}>('/api/categorise/next',
+        httpOptions == null ?
+          this.httpParams == null ? {} : { params: this.httpParams }
+          : httpOptions
+      )
+      .pipe(
+        map(artifacts => artifacts.artifacts),
+        map(artifacts => artifacts.map(parseDates))
+      );
+  }
+
+  _setHttpParamsFromLocalStorage() {
+    const categoriseServiceFilterForm = localStorage.getItem('categoriseServiceFilterForm');
+    if (categoriseServiceFilterForm != null)
+      this.httpParams = new HttpParams({ fromObject: JSON.parse(categoriseServiceFilterForm) });
   }
 }

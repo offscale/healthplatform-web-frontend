@@ -24,7 +24,8 @@ export class ArtifactService {
       .pipe(map(parseDates));
   }
 
-  update(artifact: Partial<IArtifact>, artifactLocation: IArtifact['location']): Observable<IArtifact> {
+  update(artifact: Partial<IArtifact>,
+         artifactLocation: IArtifact['location']): Observable<IArtifact> {
     return this.http
       .put<IArtifact>(`/api/artifact/${artifactLocation}`, artifact)
       .pipe(map(parseDates));
@@ -38,15 +39,6 @@ export class ArtifactService {
   getAll(): Observable<IArtifact[]> {
     return this.http
       .get<{artifacts: IArtifact[]}>('/api/artifact')
-      .pipe(
-        map(artifacts => artifacts.artifacts),
-        map(artifacts => artifacts.map(parseDates))
-      );
-  }
-
-  getNext(): Observable<IArtifact[]> {
-    return this.http
-      .get<{artifacts: IArtifact[]}>('/api/categorise/next')
       .pipe(
         map(artifacts => artifacts.artifacts),
         map(artifacts => artifacts.map(parseDates))

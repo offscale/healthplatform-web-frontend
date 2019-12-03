@@ -9,6 +9,7 @@ import { ICategoryEnum } from '../../api/category-enum/category-enum.interfaces'
 import { AlertsService } from '../alerts/alerts.service';
 import { parseBeforeJsonArray, parseOutJsonArray } from '../categorise/categorise.utils';
 import { CategoriseService } from '../../api/categorise/categorise.service';
+import { HttpParams } from '@angular/common/http';
 
 
 @Component({
@@ -51,12 +52,16 @@ export class TriageComponent implements OnInit {
   submitDefaults() {
     if (this.defaultsForm.value != null && this.defaultsForm.get('defaultCategoryEnum') != null)
       localStorage.setItem('defaultCategoryEnum', this.defaultsForm.get('defaultCategoryEnum').value);
+    this.refresh();
   }
 
   submitFilter() {
     const queryParams = removeEmpty(this.filterForm.value);
-    if (Object.keys(queryParams).length > 0)
-      this.categoriseService.queryParams = queryParams;
+    if (Object.keys(queryParams).length > 0) {
+      localStorage.setItem('categoriseServiceFilterForm', JSON.stringify(queryParams));
+      this.categoriseService._setHttpParamsFromLocalStorage();
+    }
+    this.refresh();
   }
 
   isCreateFormValid(): boolean {
@@ -72,5 +77,17 @@ export class TriageComponent implements OnInit {
     if (categoryEnumName != null)
       this.filterForm.patchValue({ categoryEnumName });
     return categoryEnumName;
+  }
+
+  searchForUncategorised() {
+    localStorage.setItem('categoriseServiceFilterForm', JSON.stringify({}));
+    this.categoriseService._setHttpParamsFromLocalStorage();
+    this.categoriseService.httpParams = new HttpParams();
+    this.refresh();
+  }
+
+  // TODO: Remove this
+  refresh() {
+    window.location.reload();
   }
 }

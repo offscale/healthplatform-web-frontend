@@ -6,7 +6,7 @@ import { MatButtonModule, MatCardModule, MatGridListModule, MatIconModule, MatMe
 
 import { dashboardRoutes } from './dashboard.routes';
 import { DashboardComponent } from './dashboard.component';
-import { FlexModule } from '@angular/flex-layout';
+import { FlexLayoutModule, FlexModule } from '@angular/flex-layout';
 import { BannerDisplayModule } from '../banner-display/banner-display.module';
 
 
@@ -20,7 +20,7 @@ import { BannerDisplayModule } from '../banner-display/banner-display.module';
         MatCardModule,
         MatMenuModule,
         MatIconModule,
-        MatButtonModule, BannerDisplayModule
+        MatButtonModule, BannerDisplayModule, FlexLayoutModule
     ],
   declarations: [DashboardComponent],
   exports: [DashboardComponent]

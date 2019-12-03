@@ -22,7 +22,7 @@ export class PerformanceKpisComponent implements OnInit {
     forkJoin([
       this.artifactService
         .getAll(),
-      this.artifactService
+      this.categoriseService
         .getNext(),
       this.categoriseService
         .getAll()
