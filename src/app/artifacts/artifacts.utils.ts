@@ -40,7 +40,7 @@ export const parseContent = (artifact: IArtifact): string | any => {
                                 style="width: 70%" id="artifact" />`;
       break;
     default:
-      throw TypeError(`Not implemented: ${artifact.mimeType}`);
+      throw TypeError(`Not implemented: '${artifact.contentType}'`);
   }
 
   return artifact;

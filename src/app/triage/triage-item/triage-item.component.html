@@ -28,4 +28,15 @@
 
 <app-artifact-item></app-artifact-item>
 
-<app-triage-next></app-triage-next>
+<div fxLayout="row">
+  <button mat-raised-button fxFlex style="margin-top: 25px;"
+          [ngStyle.xs]="{'height': '30px', 'font-size': 'medium'}"
+          [ngStyle.sm]="{'height': '40px', 'font-size': 'large'}"
+          [ngStyle.md]="{'height': '50px', 'font-size': 'x-large'}"
+          [ngStyle.gt-md]="{'height': '150px', 'font-size': 'xx-large'}"
+          (click)="previous()">
+    <mat-icon>arrow_back</mat-icon>
+    Back
+  </button>
+  <app-triage-next fxFlex></app-triage-next>
+</div>

@@ -1,6 +1,7 @@
 import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpParams } from '@angular/common/http';
+import { Location } from '@angular/common';
 
 import { MatButtonToggleGroup } from '@angular/material';
 
@@ -34,6 +35,7 @@ export class TriageItemComponent implements OnInit {
   enumerationGroupValue: string;
 
   constructor(private route: ActivatedRoute,
+              private location: Location,
               private alertsService: AlertsService,
               private artifactService: ArtifactService,
               private categoriseService: CategoriseService) {
@@ -92,6 +94,9 @@ export class TriageItemComponent implements OnInit {
     switch (event.key) {
       case 'n':
         throw TypeError('TODO: Implement `n` to call next button');
+      case 'p':
+        this.previous();
+        break;
       case '0':
         throw TypeError('INDEXES START AT 1 DAMMIT!');
       case '1':
@@ -109,5 +114,9 @@ export class TriageItemComponent implements OnInit {
           this.categorySet(this.enumerationGroupValue);
         }
     }
+  }
+
+  previous() {
+    this.location.back();
   }
 }
