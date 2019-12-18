@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
 
 import { parseDates } from '../shared';
 import { ICategoryEnum } from './category-enum.interfaces';
 
 @Injectable()
 export class CategoryEnumService {
-  categoryEnums: ICategoryEnum[];
+  private categoryEnums$ = new BehaviorSubject<ICategoryEnum[]>([]);
 
   constructor(private http: HttpClient) {
   }
@@ -42,7 +42,21 @@ export class CategoryEnumService {
       .get<{category_enums: ICategoryEnum[]}>('/api/category_enum')
       .pipe(
         map(categoryEnums => categoryEnums.category_enums),
-        map(categoryEnums => categoryEnums.map(parseDates))
+        map(categoryEnums => categoryEnums.map(parseDates)),
+        switchMap(result => {
+          this.categoryEnums$.next(result);
+          return this.categoryEnums$;
+        })
       );
+  }
+
+  private refresh() {
+    return this.http
+      .get<{category_enums: ICategoryEnum[]}>('/api/category_enum')
+      .pipe(
+        map(categoryEnums => categoryEnums.category_enums),
+        map(categoryEnums => categoryEnums.map(parseDates)),
+      )
+      .subscribe(categoryEnums => this.categoryEnums$.next(categoryEnums));
   }
 }

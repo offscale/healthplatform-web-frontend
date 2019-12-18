@@ -39,7 +39,9 @@ export class CategoryEnumCreateComponent {
     this.categoryEnumService
       .create(categoryEnum)
       .subscribe(
-        createdCategorise => this.alertsService.add(`Added ${createdCategorise.name}`),
+        createdCategorise => {
+          this.alertsService.add(`Added ${createdCategorise.name}`);
+        },
         this.alertsService.add.bind(this.alertsService)
       );
   }

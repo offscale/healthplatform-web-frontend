@@ -20,10 +20,10 @@ export class PerformanceKpisComponent implements OnInit {
 
   ngOnInit() {
     forkJoin([
+      this.categoriseService
+          .getNext(),
       this.artifactService
         .getAll(),
-      this.categoriseService
-        .getNext(),
       this.categoriseService
         .getAll()
     ])

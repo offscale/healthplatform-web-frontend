@@ -25,9 +25,10 @@ export class TriageComponent implements OnInit {
   });
 
   filterForm: FormGroup = this.fb.group({
-    username: [localStorage.getItem('user'), Validators.required],
+    username: [JSON.parse(localStorage.getItem('categoriseServiceFilterForm') || '{}').username || localStorage.getItem('user'),
+      Validators.required],
     category: [''],
-    categoryEnum: [localStorage.getItem('defaultCategoryEnum') || ''],
+    categoryEnum: [JSON.parse(localStorage.getItem('categoriseServiceFilterForm') || '{}').categoryEnum || localStorage.getItem('defaultCategoryEnum') || ''],
     updatedAt: [new Date(2019, 2, 15).toISOString()]
   });
   enumValueToArray = parseOutJsonArray;

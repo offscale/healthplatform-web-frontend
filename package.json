@@ -1,6 +1,6 @@
 {
   "name": "healthplatform-web-frontend",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "System for doctors to triage patient images.",
   "keywords": [
     "angular",
@@ -31,7 +31,7 @@
     "@angular/common": "~8.2.14",
     "@angular/compiler": "~8.2.14",
     "@angular/core": "~8.2.14",
-    "@angular/flex-layout": "^8.0.0-beta.26",
+    "@angular/flex-layout": "^8.0.0-beta.27",
     "@angular/forms": "~8.2.14",
     "@angular/material": "^8.2.3",
     "@angular/platform-browser": "~8.2.14",
@@ -51,8 +51,8 @@
     "@types/jasmine": "~3.5.0",
     "@types/jasminewd2": "~2.0.8",
     "@types/mime": "^2.0.1",
-    "@types/node": "~12.12.14",
-    "codelyzer": "^5.2.0",
+    "@types/node": "~12.12.21",
+    "codelyzer": "^5.2.1",
     "jasmine-core": "~3.5.0",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~4.4.1",

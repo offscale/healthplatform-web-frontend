@@ -4,9 +4,10 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
+import { IArtifact } from '../artifact/artifact.interfaces';
 import { parseDates } from '../shared';
 import { ICategorise } from './categorise.interfaces';
-import { IArtifact } from '../artifact/artifact.interfaces';
+
 
 @Injectable()
 export class CategoriseService {
