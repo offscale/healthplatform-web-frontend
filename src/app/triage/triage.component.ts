@@ -24,6 +24,9 @@ export class TriageComponent implements OnInit {
     defaultCategoryEnum: [localStorage.getItem('defaultCategoryEnum') || '', Validators.required]
   });
 
+
+  // categoriseServiceFilterForm:"{"username":"bar","categoryEnum":"Simple [\"A\",\"B\",\"C\"]","updatedAt":"2019-03-14T13:00:00.000Z"}"
+
   filterForm: FormGroup = this.fb.group({
     username: [JSON.parse(localStorage.getItem('categoriseServiceFilterForm') || '{}').username || localStorage.getItem('user'),
       Validators.required],
