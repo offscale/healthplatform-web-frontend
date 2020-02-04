@@ -1,8 +1,8 @@
 healthplatform-web-frontend
 ===========================
 [![License](https://img.shields.io/badge/license-Apache--2.0%20OR%20MIT-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-[![Build Status](https://travis-ci.org/healthplatform/healthplatform-web-frontend.svg?branch=master)](https://travis-ci.org/healthplatform/healthplatform-web-frontend)
-[![Libraries.io dependency status for latest release](https://img.shields.io/librariesio/release/healthplatform/healthplatform-web-frontend.svg)](https://libraries.io/github/healthplatform/healthplatform-web-frontend)
+[![Build Status](https://travis-ci.org/offscale/healthplatform-web-frontend.svg?branch=master)](https://travis-ci.org/offscale/healthplatform-web-frontend)
+[![Libraries.io dependency status for latest release](https://img.shields.io/librariesio/release/offscale/healthplatform-web-frontend.svg)](https://libraries.io/github/offscale/healthplatform-web-frontend)
 
 System for doctors to triage patient images.
 
@@ -11,7 +11,7 @@ System for doctors to triage patient images.
     sed -i "/this.serverStatus =/c\    this.serverStatus = { version: '@ $(jq -r .version package.json); '};" src/app/server-status/server-status.component.ts
 
 ## Deploy distribution
-Clone [healthplatform-web-frontend-dist](https://github.com/healthplatform/healthplatform-web-frontend-dist) one directory above, then:
+Clone [healthplatform-web-frontend-dist](https://github.com/offscale/healthplatform-web-frontend-dist) one directory above, then:
 
     rm -rf dist; ng build --prod && d=../healthplatform-web-frontend-dist && rm -rf "$d/dist" && mv "$PWD/dist/${PWD##*/}/" "$d/dist" && cd "$d" && (git add .; git status) || ( >&2 echo BUILD FAILED )
 
