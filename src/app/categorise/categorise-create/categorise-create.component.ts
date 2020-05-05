@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 
-import { MatSelect } from '@angular/material';
+import { MatSelect } from '@angular/material/select';
 
 import { forkJoin } from 'rxjs';
 

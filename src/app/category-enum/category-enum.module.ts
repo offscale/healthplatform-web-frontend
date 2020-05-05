@@ -5,15 +5,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { FlexModule } from '@angular/flex-layout';
 
-import {
-  MatButtonModule,
-  MatFormFieldModule,
-  MatIconModule,
-  MatInputModule,
-  MatListModule,
-  MatSelectModule,
-  MatTableModule
-} from '@angular/material';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatListModule } from '@angular/material/list';
+import { MatSelectModule } from '@angular/material/select';
+import { MatTableModule } from '@angular/material/table';
 
 import { CategoryEnumService } from '../../api/category-enum/category-enum.service';
 import { BannerDisplayModule } from '../banner-display/banner-display.module';

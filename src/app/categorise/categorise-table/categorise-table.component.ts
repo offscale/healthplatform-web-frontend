@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { MatTableDataSource } from '@angular/material';
+import { MatTableDataSource } from '@angular/material/table';
 
 import { ICategorise } from '../../../api/categorise/categorise.interfaces';
 import { CategoriseService } from '../../../api/categorise/categorise.service';

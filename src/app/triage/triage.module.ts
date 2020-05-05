@@ -5,15 +5,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 
-import {
-  MatButtonModule,
-  MatButtonToggleModule,
-  MatIconModule,
-  MatInputModule,
-  MatListModule,
-  MatSelectModule,
-  MatToolbarModule
-} from '@angular/material';
+import { MatButtonModule } from '@angular/material/button';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatListModule } from '@angular/material/list';
+import { MatSelectModule } from '@angular/material/select';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { CategoryEnumService } from '../../api/category-enum/category-enum.service';
 import { PerformanceKpisModule } from '../performance-kpis/performance-kpis.module';

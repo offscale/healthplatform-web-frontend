@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { MatSelect } from '@angular/material';
+import { MatSelect } from '@angular/material/select';
 
 import { removeEmpty, removeFalseyProperties } from '../../utils';
 import { CategoryEnumService } from '../../api/category-enum/category-enum.service';

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
-import { MatSelectionListChange } from '@angular/material';
+import { MatSelectionListChange } from '@angular/material/list';
 
 import { CategoryEnumService } from '../../../api/category-enum/category-enum.service';
 import { ICategoryEnum } from '../../../api/category-enum/category-enum.interfaces';

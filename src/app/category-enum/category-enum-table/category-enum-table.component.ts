@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { MatTableDataSource } from '@angular/material';
+import { MatTableDataSource } from '@angular/material/table';
 
 import { CategoryEnumService } from '../../../api/category-enum/category-enum.service';
 import { ICategoryEnum } from '../../../api/category-enum/category-enum.interfaces';

@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 
-import { MatCardModule, MatIconModule } from '@angular/material';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
 
 import { PerformanceKpisComponent } from './performance-kpis.component';
 import { ArtifactService } from '../../api/artifact/artifact.service';

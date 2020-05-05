@@ -5,15 +5,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { FlexLayoutModule, FlexModule } from '@angular/flex-layout';
 
-import {
-  MatButtonModule, MatButtonToggleModule,
-  MatFormFieldModule,
-  MatIconModule,
-  MatInputModule,
-  MatListModule,
-  MatSelectModule,
-  MatTableModule, MatToolbarModule
-} from '@angular/material';
+import { MatButtonModule } from '@angular/material/button';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatListModule } from '@angular/material/list';
+import { MatSelectModule } from '@angular/material/select';
+import { MatTableModule } from '@angular/material/table';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { ArtifactService } from '../../../api/artifact/artifact.service';
 import { ArtifactCreateComponent } from '../artifact-create/artifact-create.component';
@@ -34,8 +34,10 @@ import { ArtifactItemModule } from '../../artifact-item/artifact-item.module';
 
     FlexModule,
 
-    MatFormFieldModule, MatInputModule, MatButtonModule,
-    MatTableModule, MatSelectModule, MatListModule, MatIconModule, MatToolbarModule, MatButtonToggleModule, FlexLayoutModule, ArtifactItemModule
+    MatFormFieldModule, MatInputModule, MatButtonModule, MatTableModule, MatSelectModule,
+    MatListModule, MatIconModule, MatToolbarModule, MatButtonToggleModule, FlexLayoutModule,
+
+    ArtifactItemModule
   ],
   exports: [ArtifactCreateComponent, ArtifactTableComponent, ArtifactComponent],
   providers: [ArtifactService]

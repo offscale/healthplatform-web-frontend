@@ -5,7 +5,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { FlexLayoutModule, FlexModule } from '@angular/flex-layout';
 
-import { MatButtonModule, MatFormFieldModule, MatInputModule, MatListModule, MatSelectModule, MatTableModule } from '@angular/material';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatListModule } from '@angular/material/list';
+import { MatSelectModule } from '@angular/material/select';
+import { MatTableModule } from '@angular/material/table';
 
 import { CategoriseService } from '../../api/categorise/categorise.service';
 import { CategoryEnumService } from '../../api/category-enum/category-enum.service';

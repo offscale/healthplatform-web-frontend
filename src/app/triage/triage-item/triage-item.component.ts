@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { HttpParams } from '@angular/common/http';
 import { Location } from '@angular/common';
 
-import { MatButtonToggleGroup } from '@angular/material';
+import { MatButtonToggleGroup } from '@angular/material/button-toggle';
 
 import { forkJoin } from 'rxjs';
 
@@ -29,7 +29,7 @@ export class TriageItemComponent implements OnInit {
   lastDate: Date = new Date();
 
 
-  @ViewChild('enumerationGroup', { static: false })
+  @ViewChild('enumerationGroup')
   enumerationGroup: MatButtonToggleGroup;
 
   enumerationGroupValue: string;
