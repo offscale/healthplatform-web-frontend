@@ -4,8 +4,9 @@
   </mat-form-field>
 
   <mat-selection-list fxFlex="100" formControlName="enumeration"
-                      (selectionChange)="enumerationSelectionChange($event)">
-    <h3 matSubheader *ngIf="createForm.value.enumeration.length">Enumeration</h3>
+                      (selectionChange)="enumerationSelectionChange($event)"
+                      *ngIf="createForm.value.enumeration.length">
+    <h3 matSubheader>Enumeration</h3>
     <mat-list-option *ngFor="let _enum of createForm.value.enumeration" style="padding: 0">
       <p mat-line>{{_enum}}</p>
     </mat-list-option>

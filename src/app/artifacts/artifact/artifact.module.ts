@@ -18,10 +18,10 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { ArtifactService } from '../../../api/artifact/artifact.service';
 import { ArtifactCreateComponent } from '../artifact-create/artifact-create.component';
 import { ArtifactTableComponent } from '../artifact-table/artifact-table.component';
+import { ArtifactItemModule } from '../../artifact-item/artifact-item.module';
 import { ArtifactsComponent } from '../artifacts.component';
 import { artifactsRoutes } from '../artifacts.routes';
 import { ArtifactComponent } from './artifact.component';
-import { ArtifactItemModule } from '../../artifact-item/artifact-item.module';
 
 
 @NgModule({
