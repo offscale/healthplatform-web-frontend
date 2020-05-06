@@ -1,13 +1,17 @@
 import { AfterViewInit, Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
+import { forkJoin } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { IArtifact } from '../../../api/artifact/artifact.interfaces';
 import { ArtifactService } from '../../../api/artifact/artifact.service';
 import { CategoriseService } from '../../../api/categorise/categorise.service';
 import { parseLocation } from '../../artifacts/artifacts.utils';
-import { AlertsService } from '../../alerts/alerts.service';
+
+import { IArtifactCategoriseStats } from '../../../api/categorise/categorise.interfaces';
+import { parseCategoryEnum } from '../../../api/shared';
+import { TriageNextService } from './triage-next.service';
 
 
 @Component({
@@ -17,38 +21,41 @@ import { AlertsService } from '../../alerts/alerts.service';
 })
 export class TriageNextComponent implements AfterViewInit {
   artifactsLeft: IArtifact[];
+  artifactCategoriseStats: IArtifactCategoriseStats;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
               private artifactService: ArtifactService,
               private categoriseService: CategoriseService,
-              private alertsService: AlertsService) { }
+              private triageNextService: TriageNextService) { }
 
   ngAfterViewInit() {
-    this.categoriseService
-      .getNext()
-      .pipe(
-        map(artifacts => artifacts.map(parseLocation))
-      )
-      .subscribe((artifacts: IArtifact[]) =>
-        this.artifactsLeft = artifacts
+    const defaultCategoryEnum = parseCategoryEnum(localStorage.getItem('defaultCategoryEnum'));
+    forkJoin([
+      this.categoriseService
+        .getNext(defaultCategoryEnum)
+        .pipe(
+          map(artifacts => artifacts.map(parseLocation))
+        ),
+      this.categoriseService
+        .getStats(defaultCategoryEnum)
+    ])
+      .subscribe((results: [IArtifact[], IArtifactCategoriseStats]) =>
+        [this.artifactsLeft, this.artifactCategoriseStats] = results
       );
   }
 
   next() {
+    this.triageNextService.changeDetected$.next(false);
     const currentPath = this.route.snapshot.url;
-
-    const nextLocation = currentPath.length === 0 ?
-      this.artifactsLeft[0]._unparsedLocation
-      : (() => {
-        for (let i = 0; i + 1 < this.artifactsLeft.length; i++)
-          if (this.artifactsLeft[i]._unparsedLocation === currentPath[0].path)
-            return this.artifactsLeft[i + 1]._unparsedLocation;
-      })();
-
-    this.router
-      .navigate(['/', 'triage'].concat(nextLocation || []))
-      .then(() => {})
-      .catch(this.alertsService.add.bind(this.alertsService));
+    this.triageNextService.next(
+      currentPath.length === 0 ?
+        this.artifactsLeft[0]._unparsedLocation
+        : (() => {
+          for (let i = 0; i + 1 < this.artifactsLeft.length; i++)
+            if (this.artifactsLeft[i]._unparsedLocation === currentPath[0].path)
+              return this.artifactsLeft[i + 1]._unparsedLocation;
+        })()
+    );
   }
 }

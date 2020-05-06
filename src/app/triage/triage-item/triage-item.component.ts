@@ -12,8 +12,10 @@ import { ICategorise } from '../../../api/categorise/categorise.interfaces';
 import { ArtifactService } from '../../../api/artifact/artifact.service';
 import { CategoriseService } from '../../../api/categorise/categorise.service';
 import { ICategoryEnum } from '../../../api/category-enum/category-enum.interfaces';
+import { parseCategoryEnum } from '../../../api/shared';
 import { parseBeforeJsonArray, parseOutJsonArray } from '../../categorise/categorise.utils';
 import { AlertsService } from '../../alerts/alerts.service';
+import { TriageNextService } from '../triage-next/triage-next.service';
 
 
 @Component({
@@ -38,7 +40,8 @@ export class TriageItemComponent implements OnInit {
               private location: Location,
               private alertsService: AlertsService,
               private artifactService: ArtifactService,
-              private categoriseService: CategoriseService) {
+              private categoriseService: CategoriseService,
+              private triageNextService: TriageNextService) {
   }
 
   ngOnInit() {
@@ -48,13 +51,16 @@ export class TriageItemComponent implements OnInit {
       this.artifactService
         .getAll(),
       this.categoriseService
-        .getNext(),
+        .getNext(parseCategoryEnum(localStorage.getItem('defaultCategoryEnum'))),
       this.categoriseService
         .getAll()
     ])
       .subscribe((result: [IArtifact[], IArtifact[], ICategorise[]]) =>
         [this.artifactsLeft, this.artifacts, this.categorises] = result
       );
+    this.triageNextService.getNext().subscribe(next => {
+      if (next) this.enumerationGroupValue = undefined;
+    });
   }
 
   categorySet(value?: string) {
@@ -93,7 +99,9 @@ export class TriageItemComponent implements OnInit {
   onKeyUp(event: KeyboardEvent) {
     switch (event.key) {
       case 'n':
-        throw TypeError('TODO: Implement `n` to call next button');
+        // throw TypeError('TODO: Implement `n` to call next button');
+        this.triageNextService.changeDetected$.next(true);
+        break;
       case 'p':
         this.previous();
         break;

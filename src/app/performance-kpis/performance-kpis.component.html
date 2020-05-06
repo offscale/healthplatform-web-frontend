@@ -1,17 +1,17 @@
 <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="25px" class="page-margin"
-     *ngIf="artifactsLeft != null">
+     *ngIf="artifactCategoriseStats != null">
   <mat-card fxFlex>
     <mat-card-header>Images left to triage</mat-card-header>
-    <mat-card-content><h2>{{artifactsLeft.length}}</h2></mat-card-content>
+    <mat-card-content><h2>{{artifactCategoriseStats.todo}}</h2></mat-card-content>
   </mat-card>
 
   <mat-card fxFlex>
     <mat-card-header>Total images</mat-card-header>
-    <mat-card-content><h2>{{artifacts.length}}</h2></mat-card-content>
+    <mat-card-content><h2>{{artifactCategoriseStats.total}}</h2></mat-card-content>
   </mat-card>
 
   <mat-card fxFlex>
-    <mat-card-header>Triage count</mat-card-header>
-    <mat-card-content><h2>{{categorises.length}}</h2></mat-card-content>
+    <mat-card-header>Triage percentage to go</mat-card-header>
+    <mat-card-content><h2>{{artifactCategoriseStats.percentage_left * 100}}%</h2></mat-card-content>
   </mat-card>
 </div>

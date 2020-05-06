@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ArtifactService } from '../../api/artifact/artifact.service';
 import { CategoriseService } from '../../api/categorise/categorise.service';
-import { IArtifact } from '../../api/artifact/artifact.interfaces';
-import { forkJoin } from 'rxjs';
-import { ICategorise } from '../../api/categorise/categorise.interfaces';
+import { IArtifactCategoriseStats } from '../../api/categorise/categorise.interfaces';
+import { parseCategoryEnum } from '../../api/shared';
 
 @Component({
   selector: 'app-performance-kpis',
@@ -11,24 +9,15 @@ import { ICategorise } from '../../api/categorise/categorise.interfaces';
   styleUrls: ['./performance-kpis.component.css']
 })
 export class PerformanceKpisComponent implements OnInit {
-  artifactsLeft: IArtifact[];
-  artifacts: IArtifact[];
-  categorises: ICategorise[];
+  artifactCategoriseStats: IArtifactCategoriseStats;
 
-  constructor(private artifactService: ArtifactService,
-              private categoriseService: CategoriseService) { }
+  constructor(private categoriseService: CategoriseService) { }
 
   ngOnInit() {
-    forkJoin([
-      this.categoriseService
-          .getNext(),
-      this.artifactService
-        .getAll(),
-      this.categoriseService
-        .getAll()
-    ])
-      .subscribe((result: [IArtifact[], IArtifact[], ICategorise[]]) =>
-        [this.artifactsLeft, this.artifacts, this.categorises] = result
+    this.categoriseService
+      .getStats(parseCategoryEnum(localStorage.getItem('defaultCategoryEnum')))
+      .subscribe((artifactCategoriseStats: IArtifactCategoriseStats) =>
+        this.artifactCategoriseStats = artifactCategoriseStats
       );
   }
 }

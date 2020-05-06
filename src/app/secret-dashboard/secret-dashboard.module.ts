@@ -8,10 +8,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 
-import { SecretDashboardComponent } from './secret-dashboard.component';
-import { secretDashboardRoutes } from './secret-dashboard.routes';
+import { CategoriseService } from '../../api/categorise/categorise.service';
 import { BannerDisplayModule } from '../banner-display/banner-display.module';
 import { PerformanceKpisModule } from '../performance-kpis/performance-kpis.module';
+import { SecretDashboardComponent } from './secret-dashboard.component';
+import { secretDashboardRoutes } from './secret-dashboard.routes';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { PerformanceKpisModule } from '../performance-kpis/performance-kpis.modu
 
         BannerDisplayModule, PerformanceKpisModule
     ],
-  declarations: [SecretDashboardComponent]
+  declarations: [SecretDashboardComponent],
+  providers: [CategoriseService]
 })
 export class SecretDashboardModule {}

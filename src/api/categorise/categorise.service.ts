@@ -6,7 +6,7 @@ import { map } from 'rxjs/operators';
 
 import { IArtifact } from '../artifact/artifact.interfaces';
 import { parseDates } from '../shared';
-import { ICategorise } from './categorise.interfaces';
+import { IArtifactCategoriseStats, ICategorise } from './categorise.interfaces';
 
 
 @Injectable()
@@ -53,12 +53,17 @@ export class CategoriseService {
       );
   }
 
-  getNext(httpOptions?: {params: HttpParams}): Observable<IArtifact[]> {
+  getStats(categoryEnumName: string): Observable<IArtifactCategoriseStats> {
+    return this.http
+      .get<IArtifactCategoriseStats>('/api/categorise/stats',
+        { params: { categoryEnumName } }
+      );
+  }
+
+  getNext(categoryEnumName: string): Observable<IArtifact[]> {
     return this.http
       .get<{artifacts: IArtifact[]}>('/api/categorise/next',
-        httpOptions == null ?
-          this.httpParams == null ? {} : { params: this.httpParams }
-          : httpOptions
+        { params: { categoryEnumName } }
       )
       .pipe(
         map(artifacts => artifacts.artifacts),

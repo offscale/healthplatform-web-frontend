@@ -8,7 +8,6 @@ import { MatIconModule } from '@angular/material/icon';
 
 import { PerformanceKpisComponent } from './performance-kpis.component';
 import { ArtifactService } from '../../api/artifact/artifact.service';
-import { CategoriseService } from '../../api/categorise/categorise.service';
 
 
 @NgModule({
@@ -23,7 +22,7 @@ import { CategoriseService } from '../../api/categorise/categorise.service';
     FlexLayoutModule
   ],
   providers: [
-    ArtifactService, CategoriseService
+    ArtifactService
   ]
 })
 export class PerformanceKpisModule {}
