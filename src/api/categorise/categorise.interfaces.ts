@@ -18,3 +18,14 @@ export interface ICategorise {
   createdAt?: Date;
   updatedAt?: Date;
 }
+
+export interface IArtifactCategoriseStats {
+  total: number;
+  todo: number;
+  percentage_left: number;
+}
+
+export interface ICategoriseStats {
+  username: string;
+  count: number;
+}

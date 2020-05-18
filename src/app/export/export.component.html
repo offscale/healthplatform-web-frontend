@@ -1,0 +1,20 @@
+<div style="padding: 15px">
+  <table *ngIf="aggStats != null">
+    <thead>
+    <tr>
+      <th scope="col">Username</th>
+      <th scope="col">Triaged</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let aggStat of aggStats">
+      <td>{{aggStat.username}}</td>
+      <td>{{aggStat.count}}</td>
+    </tr>
+    </tbody>
+  </table>
+
+  <button mat-raised-button color="primary"  (click)="downloadCategoriseCsv()">
+    Export CSV (e.g., for Microsoft Excel)
+  </button>
+</div>

@@ -44,6 +44,11 @@ const routes: Routes = [
     loadChildren: () => import('./triage/triage.module').then(m => m.TriageModule),
     canActivate: [AuthGuard]
   },
+  {
+    path: 'export',
+    loadChildren: () => import('./export/export.module').then(m => m.ExportModule),
+    canActivate: [AuthGuard]
+  },
 ];
 
 export const getRedirectUrl = (url: string): string | null => new URLSearchParams(url.slice(1)).get('redirectUrl');
