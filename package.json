@@ -1,6 +1,6 @@
 {
   "name": "healthplatform-web-frontend",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "System for doctors to triage patient images.",
   "keywords": [
     "angular",

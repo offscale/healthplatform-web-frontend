@@ -31,9 +31,10 @@ export class TriageNextComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     const defaultCategoryEnum = parseCategoryEnum(localStorage.getItem('defaultCategoryEnum'));
+    const defaultNextQuery = localStorage.getItem('nextQuery');
     forkJoin([
       this.categoriseService
-        .getNext(defaultCategoryEnum)
+        .getNext(defaultCategoryEnum, defaultNextQuery)
         .pipe(
           map(artifacts => artifacts.map(parseLocation))
         ),

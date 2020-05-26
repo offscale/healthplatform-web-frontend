@@ -71,10 +71,10 @@ export class CategoriseService {
       .pipe(map(aggStats => aggStats.categorise_agg_stats));
   }
 
-  getNext(categoryEnumName: string): Observable<IArtifact[]> {
+  getNext(categoryEnumName: string, nextQuery: string): Observable<IArtifact[]> {
     return this.http
       .get<{artifacts: IArtifact[]}>('/api/categorise/next',
-        { params: { categoryEnumName } }
+        { params: { categoryEnumName, nextQuery } }
       )
       .pipe(
         map(artifacts => artifacts.artifacts),

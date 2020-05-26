@@ -51,7 +51,10 @@ export class TriageItemComponent implements OnInit {
       this.artifactService
         .getAll(),
       this.categoriseService
-        .getNext(parseCategoryEnum(localStorage.getItem('defaultCategoryEnum'))),
+        .getNext(
+          parseCategoryEnum(localStorage.getItem('defaultCategoryEnum')),
+          localStorage.getItem('defaultNextQuery')
+        ),
       this.categoriseService
         .getAll()
     ])
