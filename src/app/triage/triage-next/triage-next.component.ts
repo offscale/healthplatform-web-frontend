@@ -60,3 +60,4 @@ export class TriageNextComponent implements AfterViewInit {
     );
   }
 }
+

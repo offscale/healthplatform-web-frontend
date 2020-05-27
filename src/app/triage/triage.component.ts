@@ -60,6 +60,7 @@ export class TriageComponent implements OnInit {
   }
 
   submitFilter() {
+    localStorage.removeItem('defaultNextQuery');
     const queryParams = removeEmpty(this.filterForm.value);
     if (Object.keys(queryParams).length > 0) {
       localStorage.setItem('categoriseServiceFilterForm', JSON.stringify(queryParams));
@@ -84,9 +85,15 @@ export class TriageComponent implements OnInit {
   }
 
   searchForUncategorised() {
+    localStorage.removeItem('defaultNextQuery');
     localStorage.setItem('categoriseServiceFilterForm', JSON.stringify({}));
     this.categoriseService._setHttpParamsFromLocalStorage();
     this.categoriseService.httpParams = new HttpParams();
+    this.refresh();
+  }
+
+  searchForDisagreements() {
+    localStorage.setItem('defaultNextQuery', 'disagreement');
     this.refresh();
   }
 
