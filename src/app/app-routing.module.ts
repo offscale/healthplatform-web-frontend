@@ -49,6 +49,11 @@ const routes: Routes = [
     loadChildren: () => import('./export/export.module').then(m => m.ExportModule),
     canActivate: [AuthGuard]
   },
+  {
+    path: 'ml-dashboard',
+    loadChildren: () => import('./ml-dashboard/ml-dashboard.module').then(m => m.MlDashboardModule),
+    canActivate: [AuthGuard]
+  }
 ];
 
 export const getRedirectUrl = (url: string): string | null => new URLSearchParams(url.slice(1)).get('redirectUrl');
