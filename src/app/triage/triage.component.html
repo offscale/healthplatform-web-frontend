@@ -6,7 +6,7 @@
         fxFlex="50" fxLayout="column">
     <h3>Filter</h3>
 
-    <div fxLayout="row" fxLayout.lt-sm="column" fxFlex="100" fxLayoutGap="25px">
+    <div fxLayout="row" fxLayout.lt-sm="column" fxFlex="auto" fxLayoutGap="25px">
       <mat-form-field fxFlex>
         <input matInput placeholder="username" formControlName="username">
       </mat-form-field>
@@ -17,7 +17,7 @@
       </mat-form-field>
     </div>
 
-    <div fxLayout="row" fxLayout.lt-sm="column" fxFlex="100" fxLayoutGap="25px">
+    <div fxLayout="row" fxLayout.lt-sm="column" fxFlex="auto" fxLayoutGap="25px">
       <mat-form-field fxFlex>
         <mat-label>Category enumeration</mat-label>
         <mat-select matNativeControl formControlName="categoryEnum">
@@ -66,9 +66,9 @@
 
   <form [formGroup]="defaultsForm" (ngSubmit)="submitDefaults()"
         fxFlex="50" fxLayout="column">
-    <h3 fxFlex="100">Default configuration</h3>
+    <h3 fxFlex="auto">Default configuration</h3>
 
-    <mat-form-field fxFlex="100">
+    <mat-form-field fxFlex="auto">
       <mat-label>Default category enumeration</mat-label>
       <mat-select matNativeControl required formControlName="defaultCategoryEnum">
         <mat-option [value]="[categoryEnum.name, JSON.stringify(categoryEnum.enumeration)].join(' ')"
