@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 
 import { MatSelectionListChange } from '@angular/material/list';
 
@@ -15,16 +15,16 @@ import { AlertsService } from '../../alerts/alerts.service';
   styleUrls: ['./category-enum-create.component.scss']
 })
 export class CategoryEnumCreateComponent {
-  createForm: FormGroup = this.fb.group({
+  createForm: UntypedFormGroup = this.fb.group({
     name: ['', Validators.required],
-    enumeration: new FormControl([], [Validators.required]),
+    enumeration: new UntypedFormControl([], [Validators.required]),
     /*
       createdAt: [''],
       updatedAt: ['']
     */
   });
 
-  constructor(private fb: FormBuilder,
+  constructor(private fb: UntypedFormBuilder,
               private alertsService: AlertsService,
               private categoryEnumService: CategoryEnumService) { }
 

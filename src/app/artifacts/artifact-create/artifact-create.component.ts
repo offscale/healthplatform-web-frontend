@@ -1,7 +1,7 @@
 import * as mime from 'mime';
 
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 
 import { ArtifactService } from '../../../api/artifact/artifact.service';
 import { IArtifact } from '../../../api/artifact/artifact.interfaces';
@@ -16,7 +16,7 @@ import { parseLocation } from '../artifacts.utils';
   styleUrls: ['./artifact-create.component.scss']
 })
 export class ArtifactCreateComponent {
-  createForm: FormGroup = this.fb.group({
+  createForm: UntypedFormGroup = this.fb.group({
     location: ['', Validators.required],
     mimeType: ['application/x-www-form-urlencoded'],
     contentType: ['', Validators.required],
@@ -27,7 +27,7 @@ export class ArtifactCreateComponent {
     */
   });
 
-  constructor(private fb: FormBuilder,
+  constructor(private fb: UntypedFormBuilder,
               private alertsService: AlertsService,
               private artifactService: ArtifactService) {
 

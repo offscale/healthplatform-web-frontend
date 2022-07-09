@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormBuilder, Validators } from '@angular/forms';
 
 import { MatSelect } from '@angular/material/select';
 
@@ -46,7 +46,7 @@ export class CategoriseCreateComponent implements OnInit, AfterViewInit {
   public categoryEnums: ICategoryEnum[];
   JSON: JSON = JSON;
 
-  constructor(private fb: FormBuilder,
+  constructor(private fb: UntypedFormBuilder,
               private alertsService: AlertsService,
               private categoriseService: CategoriseService,
               private categoryEnumService: CategoryEnumService,

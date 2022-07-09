@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 
 import { MatSelect } from '@angular/material/select';
 
@@ -20,14 +20,14 @@ import { HttpParams } from '@angular/common/http';
 export class TriageComponent implements OnInit {
   public categoryEnums: ICategoryEnum[];
 
-  defaultsForm: FormGroup = this.fb.group({
+  defaultsForm: UntypedFormGroup = this.fb.group({
     defaultCategoryEnum: [localStorage.getItem('defaultCategoryEnum') || '', Validators.required]
   });
 
 
   // categoriseServiceFilterForm:"{"username":"bar","categoryEnum":"Simple [\"A\",\"B\",\"C\"]","updatedAt":"2019-03-14T13:00:00.000Z"}"
 
-  filterForm: FormGroup = this.fb.group({
+  filterForm: UntypedFormGroup = this.fb.group({
     username: [JSON.parse(localStorage.getItem('categoriseServiceFilterForm') || '{}').username || localStorage.getItem('user'),
       Validators.required],
     category: [''],
@@ -38,7 +38,7 @@ export class TriageComponent implements OnInit {
 
   JSON = JSON;
 
-  constructor(private fb: FormBuilder,
+  constructor(private fb: UntypedFormBuilder,
               private alertsService: AlertsService,
               private categoriseService: CategoriseService,
               private categoryEnumService: CategoryEnumService) {

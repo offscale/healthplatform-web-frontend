@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpResponse } from '@angular/common/http';
 
@@ -14,11 +14,11 @@ import { getRedirectUrl } from '../../app-routing.module';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
-  auth = new FormControl();
-  form: FormGroup;
+  auth = new UntypedFormControl();
+  form: UntypedFormGroup;
 
   constructor(private router: Router,
-              private fb: FormBuilder,
+              private fb: UntypedFormBuilder,
               public authService: AuthService,
               private alertsService: AlertsService) { }
 
